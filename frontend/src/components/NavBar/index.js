@@ -1,6 +1,7 @@
-import React from "react";
+import { useState, useEffect, useRef, React } from "react";
 import { NavLink } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import * as sessionActions from "../../store/session";
 import "./styles.css";
 import logo from "../../images/remote-logo.svg";
 import {
@@ -11,8 +12,16 @@ import {
 } from "@heroicons/react/solid";
 
 function NavBar() {
+
   const [menuVis, setMenuVis] = useState(false);
   const initial = useRef(true);
+  const dispatch = useDispatch();
+
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+  };
+
   useEffect(() => {
     const menuCon = document.querySelector(".user-modal-con");
     const menu = document.querySelector(".user-modal");
@@ -53,7 +62,7 @@ function NavBar() {
             <ul className="user-modal">
               <li><NavLink to='/login' className="login">Login</NavLink></li>
               <li><NavLink to='/signup'>Sign Up</NavLink></li>
-              <li><NavLink to='/'>Host your home</NavLink></li>
+              <li onClick={logout}>Logout</li>
             </ul>
           </div>
         </div>
