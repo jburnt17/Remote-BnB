@@ -78,12 +78,13 @@
   height: 2rem;
 }
 .user-modal-con {
-  display: flex;
+  display: none;
   position: sticky;
   justify-content: flex-end;
 }
 
 .user-modal {
+  display: none;
   position: absolute;
   bottom: -8rem;
   width: 150px;

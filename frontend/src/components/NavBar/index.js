@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./styles.css";
 import logo from "../../images/remote-logo.svg";
 import {
@@ -10,18 +10,23 @@ import {
 } from "@heroicons/react/solid";
 
 function NavBar() {
-
   const [menuVis, setMenuVis] = useState(false);
+  const initial = useRef(true);
+  useEffect(() => {
+    const menuCon = document.querySelector(".user-modal-con");
+    const menu = document.querySelector(".user-modal");
+    if (!menuVis && !initial.current) {
+      menuCon.style.display = "flex";
+      menu.style.display = "inline";
+    } else {
+      menuCon.style.display = "none";
+      menu.style.display = "none";
+    }
+  }, [menuVis]);
 
   useEffect(() => {
-    const menu = document.querySelector('#modal-id');
-    if (!menuVis) {
-      menu.style.display = 'flex'
-    } else {
-      menu.style.display = 'none'
-    }
-    console.log('hello')
-  }, [menuVis]);
+    initial.current = false;
+  }, []);
 
   return (
     <>
@@ -43,7 +48,7 @@ function NavBar() {
             <MenuIcon className="icon menu-icon" />
             <UserCircleIcon className="icon user-icon" />
           </div>
-          <div className="user-modal-con" id="modal-id">
+          <div className="user-modal-con">
             <ul className="user-modal">
               <li className="login">Login</li>
               <li>Sign Up</li>
