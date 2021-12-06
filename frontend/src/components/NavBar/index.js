@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import "./styles.css";
 import logo from "../../images/remote-logo.svg";
 import {
@@ -9,6 +10,19 @@ import {
 } from "@heroicons/react/solid";
 
 function NavBar() {
+
+  const [menuVis, setMenuVis] = useState(false);
+
+  useEffect(() => {
+    const menu = document.querySelector('#modal-id');
+    if (!menuVis) {
+      menu.style.display = 'flex'
+    } else {
+      menu.style.display = 'none'
+    }
+    console.log('hello')
+  }, [menuVis]);
+
   return (
     <>
       <header className="nav-con">
@@ -25,11 +39,11 @@ function NavBar() {
         <div className="right-con">
           <p className="host">Become a host</p>
           <GlobeAltIcon className="icon globe" />
-          <div className="right-menu-con">
+          <div onClick={() => setMenuVis(!menuVis)} className="right-menu-con">
             <MenuIcon className="icon menu-icon" />
             <UserCircleIcon className="icon user-icon" />
           </div>
-          <div className="user-modal-con">
+          <div className="user-modal-con" id="modal-id">
             <ul className="user-modal">
               <li className="login">Login</li>
               <li>Sign Up</li>
