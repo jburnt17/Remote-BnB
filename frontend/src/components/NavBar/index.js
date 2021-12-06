@@ -12,7 +12,6 @@ import {
 } from "@heroicons/react/solid";
 
 function NavBar() {
-
   const [menuVis, setMenuVis] = useState(false);
   const initial = useRef(true);
   const dispatch = useDispatch();
@@ -52,16 +51,24 @@ function NavBar() {
         </div>
         {/* right */}
         <div className="right-con">
-          <p className="host">Become a host</p>
-          <GlobeAltIcon className="icon globe" />
+          <NavLink className="right-con" to="/host">
+            <p className="host">Become a host</p>
+            <GlobeAltIcon className="icon globe" />
+          </NavLink>
           <div onClick={() => setMenuVis(!menuVis)} className="right-menu-con">
             <MenuIcon className="icon menu-icon" />
             <UserCircleIcon className="icon user-icon" />
           </div>
           <div className="user-modal-con">
             <ul className="user-modal">
-              <li><NavLink to='/login' className="login">Login</NavLink></li>
-              <li><NavLink to='/signup'>Sign Up</NavLink></li>
+              <li>
+                <NavLink to="/login" className="login">
+                  Login
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/signup">Sign Up</NavLink>
+              </li>
               <li onClick={logout}>Logout</li>
             </ul>
           </div>
