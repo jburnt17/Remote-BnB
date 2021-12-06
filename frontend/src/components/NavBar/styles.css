@@ -95,6 +95,7 @@
 .user-modal > li {
   padding: .5rem 1rem;
   font-size: .9rem;
+  border-radius: .5rem;
 }
 .user-modal > li:hover {
   background-color: rgba(180, 180, 180, 0.137);
