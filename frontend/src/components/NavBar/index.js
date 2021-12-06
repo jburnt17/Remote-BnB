@@ -10,26 +10,35 @@ import {
 
 function NavBar() {
   return (
-    <header className="nav-con">
-      {/* left */}
-      <div className="logo-con">
-        <img className="logo" src={logo} />
-      </div>
-      {/* middle */}
-      <div className="search-con">
-        <input className="input" placeholder="Start your search" />
-        <SearchIcon className="icon search-icon" />
-      </div>
-      {/* right */}
-      <div className="right-con">
-        <p className="host">Become a host</p>
-        <GlobeAltIcon className="icon globe" />
-        <div className='right-menu-con'>
-          <MenuIcon className="icon menu-icon" />
-          <UserCircleIcon className="icon user-icon" />
+    <>
+      <header className="nav-con">
+        {/* left */}
+        <div className="logo-con">
+          <img className="logo" src={logo} />
         </div>
-      </div>
-    </header>
+        {/* middle */}
+        <div className="search-con">
+          <input className="input" placeholder="Start your search" />
+          <SearchIcon className="icon search-icon" />
+        </div>
+        {/* right */}
+        <div className="right-con">
+          <p className="host">Become a host</p>
+          <GlobeAltIcon className="icon globe" />
+          <div className="right-menu-con">
+            <MenuIcon className="icon menu-icon" />
+            <UserCircleIcon className="icon user-icon" />
+          </div>
+          <div className="user-modal-con">
+            <ul className="user-modal">
+              <li className="login">Login</li>
+              <li>Sign Up</li>
+              <li>Host your home</li>
+            </ul>
+          </div>
+        </div>
+      </header>
+    </>
   );
 }
 
