@@ -1,10 +1,13 @@
 import React from 'react'
+import Banner from '../Banner';
+import NavBar from '../NavBar';
 import './styles.css';
 
 function Home() {
     return (
         <div>
-            <h1>Hello</h1>
+            <NavBar />
+            <Banner />
         </div>
     )
 }
