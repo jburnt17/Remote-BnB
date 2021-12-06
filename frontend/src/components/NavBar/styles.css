@@ -102,6 +102,11 @@
   background-color: rgba(180, 180, 180, 0.137);
   cursor: pointer;
 }
+li > a {
+  color: rgb(77, 77, 77);
+  width: 100%;
+  text-decoration: none;
+}
 .login {
   color: black;
   font-weight: bold;

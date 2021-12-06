@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import "./styles.css";
 import logo from "../../images/remote-logo.svg";
@@ -50,9 +51,9 @@ function NavBar() {
           </div>
           <div className="user-modal-con">
             <ul className="user-modal">
-              <li className="login">Login</li>
-              <li>Sign Up</li>
-              <li>Host your home</li>
+              <li><NavLink to='/login' className="login">Login</NavLink></li>
+              <li><NavLink to='/signup'>Sign Up</NavLink></li>
+              <li><NavLink to='/'>Host your home</NavLink></li>
             </ul>
           </div>
         </div>
