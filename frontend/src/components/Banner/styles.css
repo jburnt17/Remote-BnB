@@ -7,34 +7,31 @@
   background-repeat: no-repeat;
 }
 
-.banner-text-con {
+.hero-text-con {
   position: absolute;
-  bottom: 50%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  left: 9%;
+  bottom: 20%;
+}
+#go {
+  font-size: 6rem;
+}
+.hero-text {
+  font-family: "Lato";
+  font-size: 5rem;
+  line-height: 5rem;
+  color: white;
+}
+.hero-text-button {
+  color: rgba(0, 0, 0, 0.74);
+  background-color: white;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  margin-top: 0.5rem;
   width: fit-content;
-}
-.banner-text {
-  color: rgb(255, 255, 255);
-  font-weight: normal;
-  font-size: 1rem;
-  /* font-weight: bold; */
-  margin-bottom: .5rem;
-}
-.banner-button {
-    color: rgba(139, 92, 246);
-    background-color: white;
-    border: none;
-    font-size: 1.10rem;
-    font-weight: bold;
-    border-radius: 9999px;
-    padding: 1rem 1.5rem;
-    margin-top: .5rem;
-    width: fit-content;
-    box-shadow: 0px 0px 4px rgba(0,0,0,.4);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
 }
 
 @media (min-width: 640px) {
@@ -48,17 +45,38 @@
     height: 400px;
     background-position: 0rem -12rem;
   }
+  #go {
+    font-size: 7rem;
+  }
+  .hero-text {
+    font-size: 6rem;
+    line-height: 6rem;
+  }
 }
 @media (min-width: 1024px) {
   .banner-con {
     height: 500px;
     background-position: 0rem -15rem;
   }
+  #go {
+    font-size: 8rem;
+  }
+  .hero-text {
+    font-size: 7rem;
+    line-height: 7rem;
+  }
 }
 @media (min-width: 1280px) {
   .banner-con {
     height: 600px;
     background-position: 0rem -15rem;
+  }
+  #go {
+    font-size: 9rem;
+  }
+  .hero-text {
+    font-size: 8rem;
+    line-height: 8rem;
   }
 }
 @media (min-width: 1526px) {

@@ -5,9 +5,14 @@ import "./styles.css";
 function Banner() {
   return (
     <div className="banner-con">
-      <div className="banner-text-con">
-        <p className="banner-text">Not sure where to go?</p>
-        <button className="banner-button">I'm flexible</button>
+      <div className="hero-text-con">
+        <div>
+          <p className="hero-text" id="go">
+            Go
+          </p>
+          <p className="hero-text">Wild</p>
+        </div>
+        <button className="hero-text-button">Explore nearby stays</button>
       </div>
     </div>
   );
