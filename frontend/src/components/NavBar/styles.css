@@ -34,7 +34,7 @@
 }
 .search-icon {
   display: none;
-  background-color: rgba(248, 113, 113);
+  background-color: rgb(47, 163, 115);
   color: rgba(255, 255, 255, 0.945);
   padding: 0.5rem;
   margin: 0px 0.5rem;
@@ -68,7 +68,7 @@
 }
 
 .logo {
-  height: 2.5rem;
+  height: 3rem;
 }
 .icon {
   height: 1.5rem;

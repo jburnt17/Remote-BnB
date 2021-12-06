@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import logo from "../../images/logo.svg";
+import logo from "../../images/remote-logo.svg";
 import {
   GlobeAltIcon,
   MenuIcon,
