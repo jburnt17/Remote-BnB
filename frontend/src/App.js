@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
+import Home from "./components/Home";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
@@ -15,9 +16,11 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
+      {/* <Navigation isLoaded={isLoaded} /> */}
         <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
@@ -25,7 +28,6 @@ function App() {
             <SignupFormPage />
           </Route>
         </Switch>
-      )}
     </>
   );
 }
