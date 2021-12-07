@@ -1,0 +1,30 @@
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spot-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem 3rem;
+  padding: 2rem;
+}
+
+@media (min-width: 640px) {
+  /* .main-body {
+      padding: 0rem 4rem;
+  } */
+  .spot-container {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .spot-container {
+      grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1280px) {
+  .spot-container {
+      grid-template-columns: repeat(4, 1fr);
+  }
+}

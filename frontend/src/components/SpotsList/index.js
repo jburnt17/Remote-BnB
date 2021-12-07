@@ -2,8 +2,10 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
+import "./styles.css";
 
 import { getSpots } from "../../store/spotReducer";
+import SpotCard from "../SpotCard";
 //TODO CREATE SINGLE SPOT COMPONENT AND IMPORT!!!
 
 function SpotsList() {
@@ -16,14 +18,22 @@ function SpotsList() {
   }, [dispatch]);
 
   return (
-    <>
+    <div>
       <NavBar />
-      {spots.map(({ address, city, state, price }, i) => (
-        <p key={i}>
-          {price},{city},{state},{address}
-        </p>
-      ))}
-    </>
+      <section>
+        <div className="spot-container">
+          {spots.map(({ name, city, state, price }, i) => (
+            <SpotCard
+              key={i}
+              name={name}
+              city={city}
+              state={state}
+              price={price}
+            />
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
 
