@@ -22,13 +22,14 @@ function SpotsList() {
       <NavBar />
       <section className="spot-section">
         <div className="spot-container">
-          {spots.map(({ name, city, state, price }, i) => (
+          {spots.map(({ id, name, city, state, price }, i) => (
             <SpotCard
               key={i}
               name={name}
               city={city}
               state={state}
               price={price}
+              spotId={id}
             />
           ))}
         </div>

@@ -12,8 +12,7 @@ import {
 } from "@heroicons/react/solid";
 
 function NavBar() {
-  const [menuVis, setMenuVis] = useState(false);
-  const initial = useRef(true);
+  const [menuVis, setMenuVis] = useState(true);
   const dispatch = useDispatch();
 
   const logout = (e) => {
@@ -24,7 +23,7 @@ function NavBar() {
   useEffect(() => {
     const menuCon = document.querySelector(".user-modal-con");
     const menu = document.querySelector(".user-modal");
-    if (!menuVis && !initial.current) {
+    if (!menuVis) {
       menuCon.style.display = "flex";
       menu.style.display = "inline";
     } else {
@@ -33,9 +32,6 @@ function NavBar() {
     }
   }, [menuVis]);
 
-  useEffect(() => {
-    initial.current = false;
-  }, []);
 
   return (
     <>
