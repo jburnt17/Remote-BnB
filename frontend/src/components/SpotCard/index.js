@@ -8,10 +8,10 @@ import "./styles.css";
 function SpotCard({ spotId, name, city, state, price }) {
   const dispatch = useDispatch();
   const [optionsShow, setOptionsShow] = useState(true);
-  
+
   useEffect(() => {
     const option = document.querySelector(`#option-${spotId}`);
-    option.style.zIndex = '99';
+    option.style.zIndex = "99";
     if (!optionsShow) {
       option.style.display = "flex";
     } else {
@@ -37,7 +37,10 @@ function SpotCard({ spotId, name, city, state, price }) {
         <ol id={`option-${spotId}`} className="spot-options">
           <button
             className="options-link delete-button"
-            onClick={() => dispatch(deleteSpot(spotId))}
+            onClick={() => {
+              setOptionsShow(false)
+              dispatch(deleteSpot(spotId));
+            }}
           >
             Delete
           </button>
