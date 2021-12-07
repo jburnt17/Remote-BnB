@@ -41,9 +41,9 @@ function NavBar() {
     <>
       <header className="nav-con">
         {/* left */}
-        <div className="logo-con">
+        <NavLink to='/' className="logo-con">
           <img className="logo" src={logo} alt="logo" />
-        </div>
+        </NavLink>
         {/* middle */}
         <div className="search-con">
           <input className="input" placeholder="Start your search" />

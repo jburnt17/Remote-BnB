@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import Home from "./components/Home";
 import * as sessionActions from "./store/session";
 import HostForm from "./components/HostForm";
+import SpotsList from "./components/SpotsList";
 // import Navigation from "./components/Navigation";
 
 function App() {
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path="/api/host">
           <HostForm />
+        </Route>
+        <Route path="/api/spots">
+          <SpotsList />
         </Route>
       </Switch>
     </>

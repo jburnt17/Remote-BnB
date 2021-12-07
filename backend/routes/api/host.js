@@ -1,6 +1,6 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
-const {Spot} = require("../../db/models");
+const { Spot } = require("../../db/models");
 
 router.post(
   "/",
@@ -9,6 +9,5 @@ router.post(
     res.json(spot);
   })
 );
-
 
 module.exports = router;
