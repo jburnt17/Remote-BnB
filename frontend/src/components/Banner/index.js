@@ -1,5 +1,4 @@
 import React from "react";
-import heroImg from "../../images/hero-image.jpg";
 import "./styles.css";
 
 function Banner() {

@@ -14,8 +14,8 @@ function Home() {
         <section className="explore-con">
           <h2 className="explore-text">Explore Areas</h2>
           <div className="explore-area">
-            {areas.map(({ img, location }) => (
-              <SmallCard img={img} location={location} />
+            {areas.map(({ img, location }, i) => (
+              <SmallCard key={i} img={img} location={location} />
             ))}
           </div>
         </section>

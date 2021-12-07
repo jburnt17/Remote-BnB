@@ -5,7 +5,7 @@ function SmallCard({ img, location }) {
   return (
     <div className="card">
       <div className="card-img">
-        <img className='card-img' src={img} />
+        <img className='card-img' src={img} alt={location} />
       </div>
       <div className="card-loc">{location}</div>
     </div>

@@ -42,7 +42,7 @@ function NavBar() {
       <header className="nav-con">
         {/* left */}
         <div className="logo-con">
-          <img className="logo" src={logo} />
+          <img className="logo" src={logo} alt="logo" />
         </div>
         {/* middle */}
         <div className="search-con">
