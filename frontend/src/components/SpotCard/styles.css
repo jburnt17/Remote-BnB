@@ -1,4 +1,5 @@
 .spot-card {
+  z-index: 0;
   height: fit-content;
   width: fit-content;
   transition: 0.1s all ease-out;
@@ -52,4 +53,12 @@
   cursor: pointer;
   border: none;
   background-color: transparent;
+}
+.spot-desc {
+  font-family: 'Nunito';
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.price {
+  font-family: 'Nunito';
 }
