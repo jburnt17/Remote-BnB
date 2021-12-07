@@ -20,7 +20,7 @@ function SpotsList() {
   return (
     <div>
       <NavBar />
-      <section>
+      <section className="spot-section">
         <div className="spot-container">
           {spots.map(({ name, city, state, price }, i) => (
             <SpotCard
