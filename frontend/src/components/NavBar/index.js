@@ -51,7 +51,7 @@ function NavBar() {
         </div>
         {/* right */}
         <div className="right-con">
-          <NavLink className="right-con" to="/host">
+          <NavLink className="right-con" to="/api/host">
             <p className="host">Become a host</p>
             <GlobeAltIcon className="icon globe" />
           </NavLink>

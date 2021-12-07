@@ -5,6 +5,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import Home from "./components/Home";
 import * as sessionActions from "./store/session";
+import HostForm from "./components/HostForm";
 // import Navigation from "./components/Navigation";
 
 function App() {
@@ -17,17 +18,20 @@ function App() {
   return (
     <>
       {/* <Navigation isLoaded={isLoaded} /> */}
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-        </Switch>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/login">
+          <LoginFormPage />
+        </Route>
+        <Route path="/signup">
+          <SignupFormPage />
+        </Route>
+        <Route path="/api/host">
+          <HostForm />
+        </Route>
+      </Switch>
     </>
   );
 }
