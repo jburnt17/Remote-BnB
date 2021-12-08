@@ -2,8 +2,8 @@ import React from "react";
 import Banner from "../Banner";
 import NavBar from "../NavBar";
 import SmallCard from "../SmallCard";
-import "./styles.css";
 import areas from "../../data/areas";
+import "./Home.css";
 
 function Home() {
   return (

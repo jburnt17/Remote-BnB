@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { editSpot } from "../../store/spotReducer";
 import NavBar from "../NavBar";
+import './EditSpot.css'
 
 function EditSpot() {
   const { spotId } = useParams();

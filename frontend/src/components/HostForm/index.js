@@ -1,7 +1,7 @@
 import { useState, useEffect, React } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./styles.css";
 import { createSpot } from "../../store/spotReducer";
+import "./HostForm.css";
 
 function HostForm() {
   const sessionUser = useSelector((state) => state.session.user);

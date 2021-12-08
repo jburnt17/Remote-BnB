@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, React } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
-import "./styles.css";
 import logo from "../../images/remote-logo.svg";
 import {
   GlobeAltIcon,
@@ -10,6 +9,8 @@ import {
   SearchIcon,
   UserCircleIcon,
 } from "@heroicons/react/solid";
+
+import './navbar.css';
 
 function NavBar() {
   const [menuVis, setMenuVis] = useState(true);
