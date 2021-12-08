@@ -6,7 +6,6 @@ import "./styles.css";
 
 import { getSpots } from "../../store/spotReducer";
 import SpotCard from "../SpotCard";
-//TODO CREATE SINGLE SPOT COMPONENT AND IMPORT!!!
 
 function SpotsList() {
   const dispatch = useDispatch();

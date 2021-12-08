@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { editSpot } from "../../store/spotReducer";
 import NavBar from "../NavBar";
 
 function EditSpot() {
   const { spotId } = useParams();
   const spots = useSelector((state) => state.spotState.entries);
+  const sessionUser = useSelector((state) => state.session.user);
   const { city, state, country, address, name, price } = spots[spotId];
 
   const [editCity, setEditCity] = useState(city);
@@ -14,7 +16,7 @@ function EditSpot() {
   const [editAddress, setEditAddress] = useState(address);
   const [editName, setEditName] = useState(name);
   const [editPrice, setEditPrice] = useState(price);
-
+  const dispatch = useDispatch();
 
   const updateCity = (e) => setEditCity(e.target.value);
   const updateState = (e) => setEditState(e.target.value);
@@ -25,8 +27,18 @@ function EditSpot() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  }
-  
+    const spot = {
+      userId: sessionUser.id,
+      address: editAddress,
+      city: editCity,
+      state: editState,
+      country: editCountry,
+      name: editName,
+      price: Number(editPrice),
+    };
+    dispatch(editSpot(spot, spotId));
+  };
+
   return (
     <div>
       <NavBar />
@@ -35,42 +47,42 @@ function EditSpot() {
         <input
           type="text"
           onChange={updateAddress}
-          value={address}
+          value={editAddress}
           placeholder="Address"
           name="address"
         />
         <input
           type="text"
           onChange={updateCity}
-          value={city}
+          value={editCity}
           placeholder="City"
           name="city"
         />
         <input
           type="text"
           onChange={updateState}
-          value={state}
+          value={editState}
           placeholder="State"
           name="state"
         />
         <input
           type="text"
           onChange={updateCountry}
-          value={country}
+          value={editCountry}
           placeholder="Country"
           name="country"
         />
         <input
           type="text"
           onChange={updateName}
-          value={name}
+          value={editName}
           placeholder="Title"
           name="title"
         />
         <input
           type="number"
           onChange={updatePrice}
-          value={price}
+          value={editPrice}
           placeholder="Price"
           name="price"
         />
