@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, React } from "react";
-import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { NavLink, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import logo from "../../images/remote-logo.svg";
 import {
@@ -10,35 +10,42 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/solid";
 
-import './navbar.css';
+import "./navbar.css";
 
 function NavBar() {
   const [menuVis, setMenuVis] = useState(true);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const sessionUser = useSelector((state) => state.session.user);
 
   const logout = (e) => {
     e.preventDefault();
+    history.push("/login");
     dispatch(sessionActions.logout());
   };
 
   useEffect(() => {
     const menuCon = document.querySelector(".user-modal-con");
     const menu = document.querySelector(".user-modal");
-    if (!menuVis) {
+    if (!menuVis && sessionUser) {
       menuCon.style.display = "flex";
       menu.style.display = "inline";
+      menu.style.bottom = "-3.4rem";
+    } else if (!menuVis && !sessionUser) {
+      menuCon.style.display = "flex";
+      menu.style.display = "inline";
+      menu.style.bottom = "-5.3rem";
     } else {
       menuCon.style.display = "none";
       menu.style.display = "none";
     }
   }, [menuVis]);
 
-
   return (
     <>
       <header className="nav-con">
         {/* left */}
-        <NavLink to='/' className="logo-con">
+        <NavLink to="/" className="logo-con">
           <img className="logo" src={logo} alt="logo" />
         </NavLink>
         {/* middle */}
@@ -58,15 +65,19 @@ function NavBar() {
           </div>
           <div className="user-modal-con">
             <ul className="user-modal">
-              <li>
-                <NavLink to="/login" className="login">
-                  Login
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/signup">Sign Up</NavLink>
-              </li>
-              <li onClick={logout}>Logout</li>
+              {!sessionUser && (
+                <li>
+                  <NavLink to="/login" className="login">
+                    Login
+                  </NavLink>
+                </li>
+              )}
+              {!sessionUser && (
+                <li>
+                  <NavLink to="/signup">Sign Up</NavLink>
+                </li>
+              )}
+              {sessionUser && <li onClick={logout}>Logout</li>}
             </ul>
           </div>
         </div>

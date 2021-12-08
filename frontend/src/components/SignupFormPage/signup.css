@@ -1,0 +1,70 @@
+.signup-form > label > input::placeholder {
+  font-family: "Nunito";
+  font-weight: 300;
+}
+
+.signup-form > label > input {
+  width: 100%;
+  height: 3.5rem;
+  border: 1px solid rgb(177, 177, 177);
+  border-radius: .5rem;
+  background-color: transparent;
+  font-size: 1.1rem;
+  padding-left: 1rem;
+  font-family: "Nunito";
+  font-weight: 300;
+  margin: .8rem 0rem;
+}
+.signup-email {
+  margin-top: 2.1rem;
+}
+
+.signup-body-con {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.signup-form-con {
+  border: 1px solid rgba(177, 177, 177, 0.644);
+  width: 550px;
+  border-radius: 0.5rem;
+  margin-top: 3rem;
+  padding: 1rem 2rem;
+}
+.signup-form-title-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid rgba(216, 216, 216, 0.712);
+  padding-bottom: 0.9rem;
+}
+.signup-form-title {
+  font-size: 1rem;
+  font-family: "Nunito";
+  font-weight: 800;
+}
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-button {
+  margin-top: 3rem;
+  border: none;
+  height: 3rem;
+  border-radius: 0.5rem;
+  background-color: rgb(49, 133, 98);
+  color: white;
+  font-family: "Nunito";
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .signup-form-con {
+    border: none;
+    margin-top: 1rem;
+  }
+}
