@@ -14,9 +14,8 @@ router.delete(
   "/:id",
   asyncHandler(async (req, res) => {
     const spot = await Spot.findByPk(req.params.id);
-    if (!spot) throw new Error("Cannot find spot...");
-    const id = await Spot.destroy({ where: { id: spot.id } });
-    return res.json({id})
+    await spot.destroy();
+    return res.json(spot);
   })
 );
 

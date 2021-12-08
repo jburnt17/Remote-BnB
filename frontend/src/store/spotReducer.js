@@ -15,9 +15,9 @@ export const loadSpots = (spots) => ({
   spots,
 });
 
-export const removeSpot = (spotId) => ({
+export const removeSpot = (spot) => ({
   type: REMOVE_SPOT,
-  spotId,
+  spot,
 });
 
 //thunk creators
@@ -47,32 +47,40 @@ export const deleteSpot = (spotId) => async (dispatch) => {
   });
   if (response.ok) {
     const spot = await response.json();
-    dispatch(removeSpot(spot.id));
+    console.log(spot, 'spot')
+    dispatch(removeSpot(spot));
   }
 };
 
 //initial state && reducer
-const initialState = { entries: {}, isLoading: true };
+const initialState = { entries: {} };
 
 const spotReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_SPOTS:
+    case LOAD_SPOTS: {
       const newState = { ...state, entries: {} };
       action.spots.forEach((spot) => {
         newState.entries[spot.id] = spot;
       });
       return newState;
-    case ADD_SPOT:
+    }
+    case ADD_SPOT: {
       return {
         ...state,
         entries: { ...state.entries, [action.spot.id]: action.spot },
       };
-    case REMOVE_SPOT:
-      const nState = { ...state };
-      delete nState[action.spotId];
-      return nState;
-    default:
+    }
+    case REMOVE_SPOT: {
+      const newState = { ...state };
+      console.log(action.spot.id, 'action');
+      console.log(newState, 'newState')
+      delete newState.entries[action.spot.id];
+      // delete newState.entries[action.spot];
+      return newState;
+    }
+    default: {
       return state;
+    }
   }
 };
 
