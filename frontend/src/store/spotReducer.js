@@ -33,7 +33,7 @@ export const updateSpot = (spot) => ({
 });
 
 
-//thunk creators
+//thunks
 export const createSpot = (spot) => async (dispatch) => {
   const response = await csrfFetch("/api/host", {
     method: "POST",
@@ -90,7 +90,6 @@ const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_SPOT: {
       const newState = action.spot
-      console.log(newState)
       return newState;
     }
     case LOAD_SPOTS: {
