@@ -15,7 +15,7 @@ router.delete(
   asyncHandler(async (req, res) => {
     const spot = await Spot.findByPk(req.params.id);
     await spot.destroy();
-    return res.json();
+    return res.json(spot);
   })
 );
 
@@ -24,7 +24,6 @@ router.put(
   asyncHandler(async (req, res) => {
     const spot = await Spot.findByPk(req.params.id);
     const newSpot = await spot.update(req.body);
-    console.log(newSpot, 'newSpottttt')
     res.json(newSpot);
   })
 );

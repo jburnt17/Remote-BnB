@@ -9,7 +9,7 @@ import SpotCard from "../SpotCard";
 
 function SpotsList() {
   const dispatch = useDispatch();
-  const spotObj = useSelector((state) => state.spotState.entries);
+  const spotObj = useSelector((state) => ({...state.spotState.entries}));
   const spots = Object.values(spotObj);
 
   useEffect(() => {

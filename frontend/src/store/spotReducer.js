@@ -90,10 +90,7 @@ const spotReducer = (state = initialState, action) => {
     }
     case REMOVE_SPOT: {
       const newState = { ...state };
-      console.log(action.spot.id, "action");
-      console.log(newState, "newState");
       delete newState.entries[action.spot.id];
-      // delete newState.entries[action.spot];
       return newState;
     }
     case UPDATE_SPOT: {
