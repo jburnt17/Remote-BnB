@@ -9,10 +9,10 @@ import SpotCard from "../SpotCard";
 import { Redirect } from "react-router";
 
 function SpotsList() {
+  const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const spotObj = useSelector((state) => ({ ...state.spotState.entries }));
   const spots = Object.values(spotObj);
-  const sessionUser = useSelector((state) => state.session.user);
   useEffect(() => {
     dispatch(getSpots());
   }, [dispatch]);

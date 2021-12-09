@@ -50,7 +50,7 @@ function SpotCard({ spotId, name, city, state, price, spots, spotObj }) {
           >
             Delete
           </button>
-          <NavLink to={`/api/spots/${spotId}/edit`} className="options-link">
+          <NavLink to={`/spots/${spotId}/edit`} className="options-link">
             Edit
           </NavLink>
         </ol>

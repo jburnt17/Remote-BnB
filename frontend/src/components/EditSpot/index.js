@@ -42,7 +42,7 @@ function EditSpot() {
 
   return (
     <div>
-      <NavLink to="/api/spots">
+      <NavLink to="/spots">
         <XIcon className="close-edit-form" />
       </NavLink>
       <div className="edit-page-body">
