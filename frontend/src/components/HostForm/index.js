@@ -38,8 +38,6 @@ function HostForm() {
     dispatch(createSpot(spot));
   };
 
-  console.log(sessionUser);
-
   return (
     <>
       <NavLink to="/"><XIcon className="close-host-form"/></NavLink>

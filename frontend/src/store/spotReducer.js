@@ -4,6 +4,7 @@ const ADD_SPOT = "spot/addSpot";
 const LOAD_SPOTS = "spot/loadSpots";
 const REMOVE_SPOT = "spot/removeSpot";
 const UPDATE_SPOT = "spot/updateSpot";
+const LOAD_SPOT = "spot/loadSpot"
 
 //action creators
 export const addSpot = (spot) => ({
@@ -25,6 +26,8 @@ export const updateSpot = (spot) => ({
   type: UPDATE_SPOT,
   spot,
 });
+
+
 
 //thunk creators
 export const createSpot = (spot) => async (dispatch) => {
@@ -53,7 +56,6 @@ export const deleteSpot = (spotId) => async (dispatch) => {
   });
   if (response.ok) {
     const spot = await response.json();
-    console.log(spot, "spot");
     dispatch(removeSpot(spot));
   }
 };

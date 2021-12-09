@@ -9,8 +9,6 @@ function SpotCard({ spotId, name, city, state, price, spots, spotObj }) {
   const dispatch = useDispatch();
   const [optionsShow, setOptionsShow] = useState(true);
   const sessionUser = useSelector((state) => state.session.user);
-  console.log(sessionUser.id)
-  console.log(spotObj[spotId].userId)
 
   useEffect(() => {
     const option = document.querySelector(`#option-${spotId}`);
