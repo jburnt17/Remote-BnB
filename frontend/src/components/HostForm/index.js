@@ -1,17 +1,16 @@
 import { useState, useEffect, React } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import { createSpot } from "../../store/spotReducer";
 import logo from "../../images/remote-logo.svg";
 import { XIcon } from "@heroicons/react/solid";
 import "./HostForm.css";
 
 function HostForm() {
+
+
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-
-
-
 
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -27,6 +26,7 @@ function HostForm() {
   const updateName = (e) => setName(e.target.value);
   const updatePrice = (e) => setPrice(e.target.value);
 
+  if (!sessionUser) return <Redirect to="/signup" />;
   const handleSubmit = (e) => {
     e.preventDefault();
     const spot = {
@@ -41,14 +41,16 @@ function HostForm() {
     dispatch(createSpot(spot));
   };
 
-
   return (
     <>
-      <NavLink to="/"><XIcon className="close-host-form"/></NavLink>
+      <NavLink to="/">
+        <XIcon className="close-host-form" />
+      </NavLink>
       <div className="host-page-body">
         <div className="left-host">
-          {sessionUser &&
-          <h2 className="left-host-text">{`Start hosting, ${sessionUser.username}`}</h2>}
+          {sessionUser && (
+            <h2 className="left-host-text">{`Start hosting, ${sessionUser.username}`}</h2>
+          )}
         </div>
         <div className="host-form-container">
           <h2 className="host-form-title">Finish your listing.</h2>

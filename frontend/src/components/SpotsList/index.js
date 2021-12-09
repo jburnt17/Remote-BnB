@@ -6,16 +6,18 @@ import "./styles.css";
 
 import { getSpots } from "../../store/spotReducer";
 import SpotCard from "../SpotCard";
+import { Redirect } from "react-router";
 
 function SpotsList() {
   const dispatch = useDispatch();
-  const spotObj = useSelector((state) => ({...state.spotState.entries}));
+  const spotObj = useSelector((state) => ({ ...state.spotState.entries }));
   const spots = Object.values(spotObj);
-
+  const sessionUser = useSelector((state) => state.session.user);
   useEffect(() => {
     dispatch(getSpots());
   }, [dispatch]);
 
+  if (!sessionUser) return <Redirect to="/signup" />;
   return (
     <div>
       <NavBar />
