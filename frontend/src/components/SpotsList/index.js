@@ -23,6 +23,8 @@ function SpotsList() {
         <div className="spot-container">
           {spots.map(({ id, name, city, state, price }, i) => (
             <SpotCard
+              spotObj={spotObj}
+              spots={spots}
               key={i}
               name={name}
               city={city}

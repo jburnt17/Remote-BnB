@@ -5,9 +5,12 @@ import { deleteSpot } from "../../store/spotReducer";
 import { DotsCircleHorizontalIcon } from "@heroicons/react/solid";
 import "./styles.css";
 
-function SpotCard({ spotId, name, city, state, price }) {
+function SpotCard({ spotId, name, city, state, price, spots, spotObj }) {
   const dispatch = useDispatch();
   const [optionsShow, setOptionsShow] = useState(true);
+  const sessionUser = useSelector((state) => state.session.user);
+  console.log(sessionUser.id)
+  console.log(spotObj[spotId].userId)
 
   useEffect(() => {
     const option = document.querySelector(`#option-${spotId}`);
@@ -23,6 +26,11 @@ function SpotCard({ spotId, name, city, state, price }) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
+  const optionCheck = () => {
+    return +sessionUser.id === +spotObj[spotId].userId;
+  };
+
+
   return (
     <div className="spot-card">
       <div className="image-dot-con">
@@ -30,10 +38,10 @@ function SpotCard({ spotId, name, city, state, price }) {
           className="spot-image"
           src="https://a0.muscache.com/im/pictures/6d0d3c2b-8515-40fd-9039-c36ea1c067db.jpg?im_w=720"
         />
-        <DotsCircleHorizontalIcon
+        {optionCheck() && <DotsCircleHorizontalIcon
           onClick={() => setOptionsShow(!optionsShow)}
           className="spot-dots"
-        />
+        />}
         <ol id={`option-${spotId}`} className="spot-options">
           <button
             className="options-link delete-button"
