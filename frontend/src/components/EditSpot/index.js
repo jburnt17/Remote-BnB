@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { editSpot } from "../../store/spotReducer";
-import NavBar from "../NavBar";
-import './EditSpot.css'
+import { XIcon } from "@heroicons/react/solid";
+import "./EditSpot.css";
 
 function EditSpot() {
   const { spotId } = useParams();
@@ -42,53 +42,62 @@ function EditSpot() {
 
   return (
     <div>
-      <NavBar />
-      <div>Hello, {spotId}</div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          onChange={updateAddress}
-          value={editAddress}
-          placeholder="Address"
-          name="address"
-        />
-        <input
-          type="text"
-          onChange={updateCity}
-          value={editCity}
-          placeholder="City"
-          name="city"
-        />
-        <input
-          type="text"
-          onChange={updateState}
-          value={editState}
-          placeholder="State"
-          name="state"
-        />
-        <input
-          type="text"
-          onChange={updateCountry}
-          value={editCountry}
-          placeholder="Country"
-          name="country"
-        />
-        <input
-          type="text"
-          onChange={updateName}
-          value={editName}
-          placeholder="Title"
-          name="title"
-        />
-        <input
-          type="number"
-          onChange={updatePrice}
-          value={editPrice}
-          placeholder="Price"
-          name="price"
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <NavLink to="/api/spots">
+        <XIcon className="close-edit-form" />
+      </NavLink>
+      <div className="edit-page-body">
+        <div className="left-edit">
+          <h2 className="left-edit-text">{`Make a mistake ${sessionUser.username}?`}</h2>
+        </div>
+        <div className="edit-form-container">
+          <h2 className="edit-form-title">Edit your listing.</h2>
+          <form className="edit-form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              onChange={updateAddress}
+              value={editAddress}
+              placeholder="Address"
+              name="address"
+            />
+            <input
+              type="text"
+              onChange={updateCity}
+              value={editCity}
+              placeholder="City"
+              name="city"
+            />
+            <input
+              type="text"
+              onChange={updateState}
+              value={editState}
+              placeholder="State"
+              name="state"
+            />
+            <input
+              type="text"
+              onChange={updateCountry}
+              value={editCountry}
+              placeholder="Country"
+              name="country"
+            />
+            <input
+              type="text"
+              onChange={updateName}
+              value={editName}
+              placeholder="Title"
+              name="title"
+            />
+            <input
+              type="number"
+              onChange={updatePrice}
+              value={editPrice}
+              placeholder="Price"
+              name="price"
+            />
+            <button className="edit-spot-button" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

@@ -9,16 +9,7 @@
     rgba(183, 210, 0, 1) 100%
   );
 }
-.host-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color: transparent;
-}
-.host-logo {
-  width: 24px;
-}
+
 .left-host {
   display: flex;
   align-items: center;
@@ -52,6 +43,7 @@
   font-family: "DM Sans";
   font-size: 1.5rem;
   font-weight: 500;
+  padding: 2rem 1rem 1rem 1rem;
 }
 .host-form-container {
   display: flex;
@@ -75,9 +67,10 @@
   position: absolute;
   width: 30px;
   color: white;
-  background-color: rgba(255, 255, 255, 0.404);
+  background-color: rgba(41, 41, 41, 0.404);
   padding: 5px;
   border-radius: 9999px;
+  z-index: 99;
   right: 0;
   margin: 1rem;
 }
@@ -98,5 +91,15 @@
   }
   .host-form-container {
     border-radius: 1rem;
+  }
+  .close-host-form {
+    position: absolute;
+    width: 30px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.404);
+    padding: 5px;
+    border-radius: 9999px;
+    right: 0;
+    margin: 1rem;
   }
 }

@@ -33,7 +33,7 @@ function LoginFormPage() {
           <div className="login-form-title-con">
             <h3 className="login-form-title">Login or sign up</h3>
           </div>
-          <h2>Welcome to Remotebnb</h2>
+          <h2 className="login-welcome">Welcome to Remotebnb</h2>
           <form className="login-form" onSubmit={handleSubmit}>
             <ul>
               {errors.map((error, idx) => (
