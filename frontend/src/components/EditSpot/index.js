@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { editSpot } from "../../store/spotReducer";
 import { XIcon } from "@heroicons/react/solid";

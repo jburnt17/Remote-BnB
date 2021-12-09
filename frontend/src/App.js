@@ -8,6 +8,7 @@ import * as sessionActions from "./store/session";
 import HostForm from "./components/HostForm";
 import SpotsList from "./components/SpotsList";
 import EditSpot from "./components/EditSpot";
+import SingleSpot from "./components/SingleSpot";
 // import Navigation from "./components/Navigation";
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
         </Route>
         <Route path="/spots/:spotId/edit">
           <EditSpot />
+        </Route>
+        <Route path="/spots/:spotId">
+          <SingleSpot />
         </Route>
         <Route path="/spots">
           <SpotsList />

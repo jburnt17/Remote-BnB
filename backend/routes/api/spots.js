@@ -10,6 +10,15 @@ router.get(
   })
 );
 
+router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const spot = await Spot.findByPk(req.params.id);
+    console.log(spot)
+    res.json(spot);
+  })
+);
+
 router.delete(
   "/:id",
   asyncHandler(async (req, res) => {
