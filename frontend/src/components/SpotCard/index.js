@@ -9,8 +9,6 @@ function SpotCard({ spotId, name, city, state, price, spots, spotObj }) {
   const dispatch = useDispatch();
   const [optionsShow, setOptionsShow] = useState(true);
   const sessionUser = useSelector((state) => state.session.user);
-  console.log(sessionUser.id)
-  console.log(spotObj[spotId].userId)
 
   useEffect(() => {
     const option = document.querySelector(`#option-${spotId}`);
@@ -38,7 +36,7 @@ function SpotCard({ spotId, name, city, state, price, spots, spotObj }) {
           className="spot-image"
           src="https://a0.muscache.com/im/pictures/6d0d3c2b-8515-40fd-9039-c36ea1c067db.jpg?im_w=720"
         />
-        {optionCheck() && <DotsCircleHorizontalIcon
+        {sessionUser && optionCheck() && <DotsCircleHorizontalIcon
           onClick={() => setOptionsShow(!optionsShow)}
           className="spot-dots"
         />}

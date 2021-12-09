@@ -7,8 +7,11 @@ import { XIcon } from "@heroicons/react/solid";
 import "./HostForm.css";
 
 function HostForm() {
-  const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
+
+
+
 
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -38,14 +41,14 @@ function HostForm() {
     dispatch(createSpot(spot));
   };
 
-  console.log(sessionUser);
 
   return (
     <>
       <NavLink to="/"><XIcon className="close-host-form"/></NavLink>
       <div className="host-page-body">
         <div className="left-host">
-          <h2 className="left-host-text">{`Start hosting, ${sessionUser.username}`}</h2>
+          {sessionUser &&
+          <h2 className="left-host-text">{`Start hosting, ${sessionUser.username}`}</h2>}
         </div>
         <div className="host-form-container">
           <h2 className="host-form-title">Finish your listing.</h2>
