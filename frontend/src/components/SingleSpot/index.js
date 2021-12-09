@@ -9,7 +9,7 @@ function SingleSpot() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSpot());
+    dispatch(getSpot(spotId));
   }, [dispatch]);
 
   return (

@@ -14,7 +14,6 @@ router.get(
   "/:id",
   asyncHandler(async (req, res) => {
     const spot = await Spot.findByPk(req.params.id);
-    console.log(spot)
     res.json(spot);
   })
 );

@@ -26,7 +26,7 @@ function SpotsList() {
       <section className="spot-section">
         <div className="spot-container">
           {spots.map(({ id, name, city, state, price }, i) => (
-            <NavLink to={`/spots/${id}`}>
+            <NavLink key={i} to={`/spots/${id}`}>
               <SpotCard
                 spotObj={spotObj}
                 spots={spots}
