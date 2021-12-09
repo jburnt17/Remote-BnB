@@ -13,7 +13,7 @@ function Banner() {
           </p>
           <p className="hero-text">Wild</p>
         </div>
-        <NavLink className="hero-text-button" to="/api/spots">Explore nearby stays</NavLink>
+        <NavLink className="hero-text-button" to="/spots">Explore nearby stays</NavLink>
       </div>
     </div>
   );

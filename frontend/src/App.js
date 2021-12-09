@@ -30,13 +30,13 @@ function App() {
         <Route path="/signup">
           <SignupFormPage />
         </Route>
-        <Route path="/api/host">
+        <Route path="/host">
           <HostForm />
         </Route>
-        <Route path="/api/spots/:spotId/edit">
+        <Route path="/spots/:spotId/edit">
           <EditSpot />
         </Route>
-        <Route path="/api/spots">
+        <Route path="/spots">
           <SpotsList />
         </Route>
       </Switch>
