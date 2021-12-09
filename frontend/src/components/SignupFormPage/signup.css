@@ -1,70 +1,107 @@
-.signup-form > label > input::placeholder {
-  font-family: "Nunito";
-  font-weight: 300;
+.signup-page-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 100vh;
+  background: rgb(23, 195, 32);
+  background: linear-gradient(
+    0deg,
+    rgba(23, 195, 32, 1) 17%,
+    rgba(183, 210, 0, 1) 100%
+  );
 }
 
-.signup-form > label > input {
-  width: 100%;
-  height: 3.5rem;
-  border: 1px solid rgb(177, 177, 177);
-  border-radius: .5rem;
-  background-color: transparent;
-  font-size: 1.1rem;
-  padding-left: 1rem;
-  font-family: "Nunito";
-  font-weight: 300;
-  margin: .8rem 0rem;
-}
-.signup-email {
-  margin-top: 2.1rem;
-}
-
-.signup-body-con {
+.left-signup {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.signup-form-con {
-  border: 1px solid rgba(177, 177, 177, 0.644);
-  width: 550px;
-  border-radius: 0.5rem;
-  margin-top: 3rem;
-  padding: 1rem 2rem;
-}
-.signup-form-title-con {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  border-bottom: 1px solid rgba(216, 216, 216, 0.712);
-  padding-bottom: 0.9rem;
-}
-.signup-form-title {
-  font-size: 1rem;
-  font-family: "Nunito";
-  font-weight: 800;
+.left-signup-text {
+  font-family: "DM Sans";
+  color: white;
+  font-size: 3.2rem;
+  font-weight: 500;
+  margin: 2rem;
 }
 .signup-form {
   display: flex;
   flex-direction: column;
 }
-
+.signup-form > input {
+  margin: 1rem;
+  border: 2px solid rgb(179, 179, 179);
+  height: 3rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: black;
+  font-family: "DM Sans";
+  font-size: 1rem;
+  font-weight: 300;
+  cursor: pointer;
+  padding-left: 0.5rem;
+}
+.signup-form-title {
+  font-family: "DM Sans";
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 2rem 1rem 1rem 1rem;
+}
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  max-width: 100vw;
+  height: 100vh;
+}
 .signup-button {
-  margin-top: 3rem;
   border: none;
   height: 3rem;
   border-radius: 0.5rem;
   background-color: rgb(49, 133, 98);
   color: white;
-  font-family: "Nunito";
+  font-family: "DM Sans";
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
+  margin: 1.5rem 1rem;
+}
+.close-signup-form {
+  position: absolute;
+  width: 30px;
+  color: white;
+  background-color: rgba(41, 41, 41, 0.404);
+  padding: 5px;
+  border-radius: 9999px;
+  z-index: 99;
+  right: 0;
+  margin: 1rem;
 }
 
-@media (max-width: 600px) {
-  .signup-form-con {
-    border: none;
-    margin-top: 1rem;
+@media (max-width: 530px) {
+  .signup-page-body {
+    display: flex;
+    flex-direction: column;
+    background: rgb(23, 195, 32);
+    background: linear-gradient(
+      90deg,
+      rgba(23, 195, 32, 1) 17%,
+      rgba(183, 210, 0, 1) 100%
+    );
+  }
+  .signup-form-title {
+    border-radius: 1rem;
+  }
+  .signup-form-container {
+    border-radius: 1rem;
+  }
+  .close-signup-form {
+    position: absolute;
+    width: 30px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.404);
+    padding: 5px;
+    border-radius: 9999px;
+    right: 0;
+    margin: 1rem;
   }
 }

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
+import { XIcon } from "@heroicons/react/solid";
 import "./LoginForm.css";
-import NavBar from "../NavBar";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -26,42 +26,38 @@ function LoginFormPage() {
   };
 
   return (
-    <div>
-      <NavBar />
-      <div className="login-body-con">
-        <div className="login-form-con">
-          <div className="login-form-title-con">
-            <h3 className="login-form-title">Login or sign up</h3>
-          </div>
-          <h2 className="login-welcome">Welcome to Remotebnb</h2>
+    <>
+      <NavLink to="/">
+        <XIcon className="close-host-form" />
+      </NavLink>
+      <div className="login-page-body">
+        <div className="left-login">
+          <h2 className="left-login-text">Welcome to Remotebnb</h2>
+        </div>
+        <div className="login-form-container">
+          <h2 className="login-form-title">Login or signup</h2>
           <form className="login-form" onSubmit={handleSubmit}>
             <ul>
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
               ))}
             </ul>
-            <div className="input-wrapper">
-              <label>
-                <input
-                  className="username-input"
-                  type="text"
-                  value={credential}
-                  placeholder="Username or Email"
-                  onChange={(e) => setCredential(e.target.value)}
-                  required
-                />
-              </label>
-              <label>
-                <input
-                  className="password-input"
-                  type="password"
-                  value={password}
-                  placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </label>
-            </div>
+            <input
+              className="username-input"
+              type="text"
+              value={credential}
+              placeholder="Username or Email"
+              onChange={(e) => setCredential(e.target.value)}
+              required
+            />
+            <input
+              className="password-input"
+              type="password"
+              value={password}
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
             <button className="login-button" type="submit">
               Log In
             </button>
@@ -77,7 +73,7 @@ function LoginFormPage() {
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

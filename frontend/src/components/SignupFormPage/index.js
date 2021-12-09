@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
+import { XIcon } from "@heroicons/react/solid";
 import NavBar from "../NavBar";
 import * as sessionActions from "../../store/session";
 import "./signup.css";
@@ -33,66 +34,61 @@ function SignupFormPage() {
   };
 
   return (
-    <div>
-      <NavBar />
-      <div className="signup-body-con">
-        <div className="signup-form-con">
-          <div className="signup-form-title-con">
-            <h3 className="signup-form-title">Sign Up</h3>
-          </div>
+    <>
+      <NavLink to="/">
+        <XIcon className="close-host-form" />
+      </NavLink>
+      <div className="signup-page-body">
+        <div className="left-login">
+          <h2 className="left-login-text">Welcome to Remotebnb</h2>
+        </div>
+        <div className="signup-form-container">
+          <h2 className="signup-form-title">Sign Up</h2>
           <form className="signup-form" onSubmit={handleSubmit}>
             <ul>
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
               ))}
             </ul>
-            <label className="signup-email">
-              <input
-                placeholder="Email"
-                className="signup-email"
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </label>
-            <label>
-              <input
-                placeholder="Username"
-                className="signup-user"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-            </label>
-            <label>
-              <input
-                placeholder="Password"
-                className="signup-pass"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </label>
-            <label>
-              <input
-                placeholder="Confirm Password"
-                className="signup-con-pass"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
-            </label>
+            <input
+              placeholder="Email"
+              className="signup-email"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              placeholder="Username"
+              className="signup-user"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <input
+              placeholder="Password"
+              className="signup-pass"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <input
+              placeholder="Confirm Password"
+              className="signup-con-pass"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
             <button className="signup-button" type="submit">
               Sign Up
             </button>
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
