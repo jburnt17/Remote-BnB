@@ -30,11 +30,9 @@ function NavBar() {
     if (!menuVis && sessionUser) {
       menuCon.style.display = "flex";
       menu.style.display = "inline";
-      menu.style.bottom = "-3.4rem";
     } else if (!menuVis && !sessionUser) {
       menuCon.style.display = "flex";
       menu.style.display = "inline";
-      menu.style.bottom = "-5.3rem";
     } else {
       menuCon.style.display = "none";
       menu.style.display = "none";
@@ -77,6 +75,7 @@ function NavBar() {
                   <NavLink to="/signup">Sign Up</NavLink>
                 </li>
               )}
+              {sessionUser && <li >Bookings</li>}
               {sessionUser && <li onClick={logout}>Logout</li>}
             </ul>
           </div>
