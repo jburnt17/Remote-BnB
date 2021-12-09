@@ -50,6 +50,7 @@
   flex-direction: column;
   justify-content: center;
   background-color: white;
+  max-width: 100vw;
 }
 .host-button {
   border: none;
