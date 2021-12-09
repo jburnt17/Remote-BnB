@@ -46,7 +46,7 @@ function SpotCard({ spotId, name, city, state, price, spots, spotObj }) {
           <button
             className="options-link delete-button"
             onClick={() => {
-              setOptionsShow(false)
+              setOptionsShow(!optionsShow)
               dispatch(deleteSpot(spotId));
             }}
           >
