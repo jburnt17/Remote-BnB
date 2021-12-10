@@ -9,6 +9,7 @@ import HostForm from "./components/HostForm";
 import SpotsList from "./components/SpotsList";
 import EditSpot from "./components/EditSpot";
 import SingleSpot from "./components/SingleSpot";
+import UserBookings from "./components/UserBookings";
 // import Navigation from "./components/Navigation";
 
 function App() {
@@ -42,6 +43,9 @@ function App() {
         </Route>
         <Route path="/spots">
           <SpotsList />
+        </Route>
+        <Route path="/bookings">
+          <UserBookings />
         </Route>
       </Switch>
     </>

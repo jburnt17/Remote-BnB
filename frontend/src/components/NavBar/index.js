@@ -75,7 +75,7 @@ function NavBar() {
                   <NavLink to="/signup">Sign Up</NavLink>
                 </li>
               )}
-              {sessionUser && <li >Bookings</li>}
+              {sessionUser && <li ><NavLink to="/bookings">Bookings</NavLink></li>}
               {sessionUser && <li onClick={logout}>Logout</li>}
             </ul>
           </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect, React } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, NavLink } from "react-router-dom";
+import { Redirect, NavLink, useHistory } from "react-router-dom";
 import { createSpot } from "../../store/spotReducer";
 import logo from "../../images/remote-logo.svg";
 import { XIcon } from "@heroicons/react/solid";
@@ -10,6 +10,7 @@ function HostForm() {
 
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
 
   const [address, setAddress] = useState("");
@@ -39,6 +40,7 @@ function HostForm() {
       price: Number(price),
     };
     dispatch(createSpot(spot));
+    history.push('/spots')
   };
 
   return (
