@@ -71,7 +71,7 @@ function BookingCard({ bookingId, spotId, userId, startDate, endDate }) {
       )}
       {userMatch() &&
         spots.map(({ id, city, state, country, price }) => (
-          <div key={id}>
+          <>
             {spotId === id ? (
               <div className="booking-info">
                 <p>{city},</p>
@@ -91,8 +91,8 @@ function BookingCard({ bookingId, spotId, userId, startDate, endDate }) {
                   </div>
                 }
               </div>
-            ) : null}
-          </div>
+            ) : false}
+          </>
         ))}
     </div>
   );
