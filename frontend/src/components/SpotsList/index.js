@@ -6,7 +6,6 @@ import NavBar from "../NavBar";
 import "./styles.css";
 
 import { getSpots } from "../../store/spotReducer";
-import { getSpot } from "../../store/spotReducer";
 import SpotCard from "../SpotCard";
 import { Redirect } from "react-router";
 

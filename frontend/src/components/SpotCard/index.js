@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { deleteSpot } from "../../store/spotReducer";
 import { DotsCircleHorizontalIcon } from "@heroicons/react/solid";
 import "./styles.css";
 
-function SpotCard({ spotId, name, city, state, price, spots, spotObj }) {
+function SpotCard({ spotId, city, state, price, spotObj }) {
   const dispatch = useDispatch();
   const [optionsShow, setOptionsShow] = useState(true);
   const sessionUser = useSelector((state) => state.session.user);

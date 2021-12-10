@@ -46,7 +46,20 @@
 @media (min-width: 800px) {
   .banner-con {
     height: 400px;
-    background-position: 0rem -12rem;
+    background-position: 0rem -10rem;
+  }
+  #go {
+    font-size: 7rem;
+  }
+  .hero-text {
+    font-size: 6rem;
+    line-height: 6rem;
+  }
+}
+@media (min-width: 900px) {
+  .banner-con {
+    height: 400px;
+    background-position: 0rem -13rem;
   }
   #go {
     font-size: 7rem;
@@ -59,7 +72,7 @@
 @media (min-width: 1024px) {
   .banner-con {
     height: 500px;
-    background-position: 0rem -15rem;
+    background-position: 0rem -12rem;
   }
   #go {
     font-size: 8rem;
