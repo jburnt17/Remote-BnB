@@ -29,6 +29,7 @@ function SpotsList() {
                 spotObj={spotObj}
                 spots={spots}
                 key={i}
+                ind={i}
                 name={name}
                 city={city}
                 state={state}

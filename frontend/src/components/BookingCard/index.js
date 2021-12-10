@@ -1,24 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpots } from "../../store/spotReducer";
+import { deleteSpot, getSpots } from "../../store/spotReducer";
+import { deleteBooking } from "../../store/bookingReducer";
 import "./BookingCard.css";
 
-function BookingCard({ id, spotId, userId, startDate, endDate }) {
+function BookingCard({ bookingId, spotId, userId, startDate, endDate }) {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getSpots());
-  }, [dispatch]);
-
-  useEffect(() => {
-    const cardCon = document.querySelector(".booking-card-con");
-    if (+userId !== +sessionUser.id) {
-      console.log(cardCon)
-      return cardCon.style.display = 'none';
-    }
-  }, [dispatch])
-
   const spotObj = useSelector((state) => ({ ...state.spotState.entries }));
   const spots = Object.values(spotObj);
 
@@ -27,17 +15,40 @@ function BookingCard({ id, spotId, userId, startDate, endDate }) {
   let end = new Date(endDate).toUTCString();
   end = end.split("").slice(0, 16);
 
-  // const userMatch = () => {
-  //   return +userId === +sessionUser.id;
-  // };
+  useEffect(() => {
+    dispatch(getSpots());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const cardCon = document.querySelector(".booking-card-con");
+    if (+userId !== +sessionUser.id) {
+      return (cardCon.style.display = "none");
+    }
+  }, [dispatch]);
+
   const userMatch = () => {
     if (+userId === +sessionUser.id) {
       return true;
     }
   };
 
+  const [deleteShow, setDeleteShow] = useState(true);
+  useEffect(async() => {
+    await sessionUser;
+    const deleteCon = document.querySelector(`.booking-delete-con-${spotId}`);
+    console.log(deleteCon);
+    if (deleteCon && !deleteShow) {
+      deleteCon.style.display = "flex";
+    } else if (deleteCon && deleteShow) {
+      deleteCon.style.display = "none";
+    }
+  }, [deleteShow]);
+
   return (
-    <div className="booking-card-con">
+    <div
+      onClick={() => setDeleteShow(!deleteShow)}
+      className="booking-card-con"
+    >
       {userMatch() && (
         <div>
           <img
@@ -60,15 +71,27 @@ function BookingCard({ id, spotId, userId, startDate, endDate }) {
       )}
       {userMatch() &&
         spots.map(({ id, city, state, country, price }) => (
-          <>
+          <div key={id}>
             {spotId === id ? (
               <div className="booking-info">
                 <p>{city},</p>
                 <p>{state}</p>
                 <p>${price}</p>
+                { sessionUser &&
+                  <div
+                    className={`booking-delete-container booking-delete-con-${spotId}`}
+                  >
+                    <button
+                      onClick={() => dispatch(deleteBooking(bookingId))}
+                      className="booking-delete-button"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                }
               </div>
             ) : null}
-          </>
+          </div>
         ))}
     </div>
   );

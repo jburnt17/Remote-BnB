@@ -10,6 +10,15 @@ router.get(
   })
 );
 
+router.delete(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const booking = await Booking.findByPk(req.params.id);
+    await booking.destroy();
+    return res.json(booking);
+  })
+);
+
 router.post(
   "/",
   asyncHandler(async (req, res) => {

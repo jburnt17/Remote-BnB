@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const ADD_BOOKING = "/booking/addBooking";
 const LOAD_BOOKINGS = "/booking/loadBookings";
+const REMOVE_BOOKING = "/booking/removeBooking";
 
 //action creators
 export const addBooking = (booking) => ({
@@ -12,6 +13,11 @@ export const addBooking = (booking) => ({
 export const loadBookings = (bookings) => ({
   type: LOAD_BOOKINGS,
   bookings,
+});
+
+export const removeBooking = (booking) => ({
+  type: REMOVE_BOOKING,
+  booking,
 });
 
 //thunks
@@ -36,6 +42,16 @@ export const getBookings = () => async (dispatch) => {
   return bookings;
 };
 
+export const deleteBooking = (bookingId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    const booking = await response.json();
+    dispatch(removeBooking(booking));
+  }
+};
+
 //initial state && reducer
 const initialState = { entries: {} };
 
@@ -53,6 +69,11 @@ const bookingReducer = (state = initialState, action) => {
       action.bookings.forEach((booking) => {
         newState.entries[booking.id] = booking;
       });
+      return newState;
+    }
+    case REMOVE_BOOKING: {
+      const newState = { ...state };
+      delete newState.entries[action.booking.id];
       return newState;
     }
     default: {

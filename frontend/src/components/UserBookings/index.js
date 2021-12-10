@@ -34,7 +34,7 @@ function UserBookings() {
           {bookings.map(({ id, spotId, userId, startDate, endDate }, i) => (
             <BookingCard
               key={i}
-              id={id}
+              bookingId={id}
               spotId={spotId}
               userId={userId}
               startDate={startDate}

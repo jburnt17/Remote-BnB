@@ -11,7 +11,6 @@ function SingleSpot() {
   const sessionUser = useSelector((state) => state.session.user);
   const singleState = useSelector((state) => state.spotState);
   const { address, city, country, name, price, state } = singleState;
-  console.log(sessionUser.id);
 
   useEffect(() => {
     dispatch(getSpot(spotId));
