@@ -91,6 +91,9 @@
   font-weight: 500;
   cursor: pointer;
   margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .demo-button {
   margin-top: 1rem;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink } from "react-router-dom";
+import { demoLogin } from "../../store/session";
 import { XIcon } from "@heroicons/react/solid";
 import "./LoginForm.css";
 
@@ -23,6 +24,11 @@ function LoginFormPage() {
         if (data && data.errors) setErrors(data.errors);
       }
     );
+  };
+  const user = {credential: 'demo@user.io', password: 'password'}
+  const demoUser = (e) => {
+    e.preventDefault();
+    dispatch(demoLogin(user));
   };
 
   return (
@@ -61,16 +67,16 @@ function LoginFormPage() {
             <button className="login-button" type="submit">
               Log In
             </button>
+          </form>
             <p className="split-con">
               <span className="split">or</span>
             </p>
-            <button className="log-signup-button" type="submit">
+            <NavLink to="/signup" className="log-signup-button" type="submit">
               Sign Up
-            </button>
-            <button className="demo-button" type="submit">
+            </NavLink>
+            <button onClick={demoUser} className="demo-button">
               Demo
             </button>
-          </form>
         </div>
       </div>
     </>
