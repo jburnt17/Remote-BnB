@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { getSpot } from "../../store/spotReducer";
 import { createBooking } from "../../store/bookingReducer";
+import { XIcon } from "@heroicons/react/solid";
 import NavBar from "../NavBar";
+import "./SingleSpot.css";
 
 function SingleSpot() {
   const { spotId } = useParams();
@@ -34,25 +36,37 @@ function SingleSpot() {
   };
   return (
     <>
-      <NavBar />
-      <h2>Hello {spotId}</h2>
-      <h2>{address}</h2>
-      <h2>{city}</h2>
-      <h2>{country}</h2>
-      <h2>{name}</h2>
-      <h2>{price}</h2>
-      <h2>{state}</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          start
-          <input type="date" value={startDate} onChange={updateStart} />
-        </label>
-        <label>
-          end
-          <input type="date" value={endDate} onChange={updateEnd} />
-        </label>
-        <button type="submit">Book now</button>
-      </form>
+      <NavLink to="/spots">
+        <XIcon className="close-edit-form" />
+      </NavLink>
+      <div className="spot-page-body">
+        <div className="single-spot-image-con">
+          <img
+            className="single-spot-image"
+            src="https://a0.muscache.com/im/pictures/miso/Hosting-39300792/original/e3c41b3e-d43f-4fd4-a016-b6bc10a3c782.jpeg?im_w=1200"
+          />
+        </div>
+        <div className="right-single-spot-con">
+          <div>
+            <p className="booking-form-title">
+              {name} in {city}
+            </p>
+            <div className="booking-description">
+              <p className="booking-page-address">
+                {address}, {city},{state},{country}
+              </p>
+              <p className="spot-page-price">${price}/night</p>
+            </div>
+          </div>
+          <form className="booking-form" onSubmit={handleSubmit}>
+            <input type="date" value={startDate} onChange={updateStart} />
+            <input type="date" value={endDate} onChange={updateEnd} />
+            <button className="booking-spot-button" type="submit">
+              Book now
+            </button>
+          </form>
+        </div>
+      </div>
     </>
   );
 }
