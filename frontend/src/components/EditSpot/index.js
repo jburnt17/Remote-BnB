@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useParams, NavLink, Redirect } from "react-router-dom";
+import { useParams, NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { editSpot } from "../../store/spotReducer";
 import { XIcon } from "@heroicons/react/solid";
 import "./EditSpot.css";
 
 function EditSpot() {
+  const history = useHistory();
   const { spotId } = useParams();
   const spots = useSelector((state) => state.spotState.entries);
   const sessionUser = useSelector((state) => state.session.user);
@@ -26,7 +27,7 @@ function EditSpot() {
   const updateName = (e) => setEditName(e.target.value);
   const updatePrice = (e) => setEditPrice(e.target.value);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const spot = {
       userId: sessionUser.id,
@@ -37,7 +38,8 @@ function EditSpot() {
       name: editName,
       price: Number(editPrice),
     };
-    dispatch(editSpot(spot, spotId));
+    await dispatch(editSpot(spot, spotId));
+    history.push("/spots");
   };
 
   return (
@@ -94,7 +96,9 @@ function EditSpot() {
               placeholder="Price"
               name="price"
             />
-            <button className="edit-spot-button" type="submit">Submit</button>
+            <button className="edit-spot-button" type="submit">
+              Submit
+            </button>
           </form>
         </div>
       </div>

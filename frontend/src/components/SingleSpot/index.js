@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getSpot } from "../../store/spotReducer";
 import { createBooking } from "../../store/bookingReducer";
 import { XIcon } from "@heroicons/react/solid";
@@ -10,6 +10,7 @@ import "./SingleSpot.css";
 function SingleSpot() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const singleState = useSelector((state) => state.spotState);
   const { address, city, country, name, price, state } = singleState;
@@ -24,7 +25,7 @@ function SingleSpot() {
   const updateStart = (e) => setStartDate(e.target.value);
   const updateEnd = (e) => setEndDate(e.target.value);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const booking = {
       userId: sessionUser.id,
@@ -32,7 +33,8 @@ function SingleSpot() {
       startDate,
       endDate,
     };
-    dispatch(createBooking(booking));
+    await dispatch(createBooking(booking));
+    history.push('/bookings');
   };
   return (
     <>
