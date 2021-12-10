@@ -28,7 +28,7 @@ function HostForm() {
   const updatePrice = (e) => setPrice(e.target.value);
 
   if (!sessionUser) return <Redirect to="/signup" />;
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const spot = {
       userId: sessionUser.id,
@@ -39,7 +39,7 @@ function HostForm() {
       name,
       price: Number(price),
     };
-    dispatch(createSpot(spot));
+    await dispatch(createSpot(spot));
     history.push('/spots')
   };
 
