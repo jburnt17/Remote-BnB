@@ -92,7 +92,7 @@
     border-radius: 1rem;
   }
   .signup-form-container {
-    border-radius: 1rem;
+    border-radius: 1rem 1rem 0rem 0rem;
   }
   .close-signup-form {
     position: absolute;
