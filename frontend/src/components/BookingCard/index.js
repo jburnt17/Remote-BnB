@@ -35,7 +35,7 @@ function BookingCard({ bookingId, spotId, userId, startDate, endDate }) {
   const [deleteShow, setDeleteShow] = useState(true);
   useEffect(async() => {
     await sessionUser;
-    const deleteCon = document.querySelector(`.booking-delete-con-${spotId}`);
+    const deleteCon = document.querySelector(`#booking-option-${bookingId}`);
     console.log(deleteCon);
     if (deleteCon && !deleteShow) {
       deleteCon.style.display = "flex";
@@ -79,7 +79,8 @@ function BookingCard({ bookingId, spotId, userId, startDate, endDate }) {
                 <p>${price}</p>
                 { sessionUser &&
                   <div
-                    className={`booking-delete-container booking-delete-con-${spotId}`}
+                    className={`booking-delete-container`}
+                    id={`booking-option-${bookingId}`}
                   >
                     <button
                       onClick={() => dispatch(deleteBooking(bookingId))}
