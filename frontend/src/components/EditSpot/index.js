@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { editSpot } from "../../store/spotReducer";
-import { XIcon } from "@heroicons/react/solid";
+import { XIcon, ExclamationIcon } from "@heroicons/react/solid";
 import "./EditSpot.css";
 
 function EditSpot() {
@@ -18,6 +18,7 @@ function EditSpot() {
   const [editAddress, setEditAddress] = useState(address);
   const [editName, setEditName] = useState(name);
   const [editPrice, setEditPrice] = useState(price);
+  const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
   const updateCity = (e) => setEditCity(e.target.value);
@@ -26,6 +27,24 @@ function EditSpot() {
   const updateAddress = (e) => setEditAddress(e.target.value);
   const updateName = (e) => setEditName(e.target.value);
   const updatePrice = (e) => setEditPrice(e.target.value);
+
+  const useComponentDidMount = () => {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = true;
+    }, []);
+    return ref.current;
+  };
+
+  const isMounted = useComponentDidMount();
+
+  useEffect(() => {
+    if (isMounted) {
+      const e = [];
+      if (!editPrice || editPrice < 0) e.push("Please provide a valid price");
+      setErrors(e);
+    }
+  }, [editPrice]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,8 +57,10 @@ function EditSpot() {
       name: editName,
       price: Number(editPrice),
     };
-    await dispatch(editSpot(spot, spotId));
-    history.push("/spots");
+    if (!errors.length) {
+      await dispatch(editSpot(spot, spotId));
+      history.push("/spots");
+    }
   };
 
   return (
@@ -54,6 +75,12 @@ function EditSpot() {
         <div className="edit-form-container">
           <h2 className="edit-form-title">Edit your listing.</h2>
           <form className="edit-form" onSubmit={handleSubmit}>
+            {errors.map((error, i) => (
+              <div className="error-container" key={i}>
+                <ExclamationIcon className="error-x" />
+                <p>{error}</p>
+              </div>
+            ))}
             <input
               type="text"
               onChange={updateAddress}

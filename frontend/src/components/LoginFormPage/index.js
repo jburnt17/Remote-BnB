@@ -3,7 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink } from "react-router-dom";
 import { demoLogin } from "../../store/session";
-import { XIcon } from "@heroicons/react/solid";
+import { XIcon, ExclamationIcon } from "@heroicons/react/solid";
 import "./LoginForm.css";
 
 function LoginFormPage() {
@@ -45,7 +45,10 @@ function LoginFormPage() {
           <form className="login-form" onSubmit={handleSubmit}>
             <ul>
               {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
+                <div className="error-container">
+                  <ExclamationIcon className="error-x"/>
+                <p key={idx}>{error}</p>
+                </div>
               ))}
             </ul>
             <input

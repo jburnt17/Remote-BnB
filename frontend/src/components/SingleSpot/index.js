@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getSpot } from "../../store/spotReducer";
 import { createBooking } from "../../store/bookingReducer";
-import { XIcon } from "@heroicons/react/solid";
+import { XIcon, ExclamationIcon } from "@heroicons/react/solid";
 import NavBar from "../NavBar";
 import "./SingleSpot.css";
 
@@ -14,6 +14,7 @@ function SingleSpot() {
   const sessionUser = useSelector((state) => state.session.user);
   const singleState = useSelector((state) => state.spotState);
   const { address, city, country, name, price, state } = singleState;
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     dispatch(getSpot(spotId));
@@ -25,7 +26,19 @@ function SingleSpot() {
   const updateStart = (e) => setStartDate(e.target.value);
   const updateEnd = (e) => setEndDate(e.target.value);
 
-  const handleSubmit = async(e) => {
+  const sDate = new Date(startDate);
+  const eDate = new Date(endDate);
+  const now = new Date();
+
+  useEffect(() => {
+    const e = [];
+    if (sDate >= eDate) e.push("Please enter a valid end date.");
+    if (sDate !== now && sDate < now)
+      e.push("Please enter a valid start date (after today's date).");
+    setErrors(e);
+  }, [startDate, endDate]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const booking = {
       userId: sessionUser.id,
@@ -33,8 +46,10 @@ function SingleSpot() {
       startDate,
       endDate,
     };
-    await dispatch(createBooking(booking));
-    history.push('/bookings');
+    if (!errors.length) {
+      await dispatch(createBooking(booking));
+      history.push("/bookings");
+    }
   };
   return (
     <>
@@ -61,6 +76,12 @@ function SingleSpot() {
             </div>
           </div>
           <form className="booking-form" onSubmit={handleSubmit}>
+            {errors.map((error, i) => (
+              <div key={i} className="error-container">
+                <ExclamationIcon className="error-x" />
+                <p>{error}</p>
+              </div>
+            ))}
             <input type="date" value={startDate} onChange={updateStart} />
             <input type="date" value={endDate} onChange={updateEnd} />
             <button className="booking-spot-button" type="submit">
