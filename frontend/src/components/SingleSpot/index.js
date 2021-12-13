@@ -70,7 +70,7 @@ function SingleSpot() {
             </p>
             <div className="booking-description">
               <p className="booking-page-address">
-                {address}, {city},{state},{country}
+                {address}, {city}, {state}, {country}
               </p>
               <p className="spot-page-price">${price}/night</p>
             </div>
