@@ -12,8 +12,12 @@ function SpotCard({ ind, spotId, city, state, price, spotObj }) {
 
   useEffect(() => {
     const option = document.querySelector(`#option-${spotId}`);
-    option.style.zIndex = "99";
+    return option.style.zIndex = '99';
+  }, [])
+  useEffect(() => {
+    const option = document.querySelector(`#option-${spotId}`);
     if (!optionsShow) {
+      option.style.zIndex = "99";
       option.style.display = "flex";
     } else {
       option.style.display = "none";

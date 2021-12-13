@@ -1,5 +1,4 @@
 .spot-card {
-  z-index: 0;
   height: fit-content;
   width: fit-content;
   transition: 0.1s all ease-out;
@@ -7,6 +6,7 @@
 }
 .spot-card:hover {
   transform: scale(1.01);
+  z-index: 99;
 }
 .spot-image {
   height: 280px;
