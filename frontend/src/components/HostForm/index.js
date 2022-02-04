@@ -16,8 +16,11 @@ function HostForm() {
   const [country, setCountry] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const [errors, setErrors] = useState([]);
+  const [beds, setBeds] = useState(0);
+  const [baths, setBaths] = useState(0);
+  const [images, setImages] = useState([]);
 
+  const [errors, setErrors] = useState([]);
 
   const updateAddress = (e) => setAddress(e.target.value);
   const updateCity = (e) => setCity(e.target.value);
@@ -25,6 +28,8 @@ function HostForm() {
   const updateCountry = (e) => setCountry(e.target.value);
   const updateName = (e) => setName(e.target.value);
   const updatePrice = (e) => setPrice(e.target.value);
+  const updateBeds = (e) => setBeds(e.target.value);
+  const updateBaths = (e) => setBaths(e.target.value);
 
   const useComponentDidMount = () => {
     const ref = useRef();
@@ -42,7 +47,7 @@ function HostForm() {
       if (!price || price < 0) e.push("Please provide a valid price");
       setErrors(e);
     }
-  }, [price])
+  }, [price]);
 
   if (!sessionUser) return <Redirect to="/signup" />;
 
@@ -56,11 +61,18 @@ function HostForm() {
       country,
       name,
       price: Number(price),
+      beds,
+      baths,
+      images,
     };
     if (!errors.length) {
       await dispatch(createSpot(spot));
       history.push("/spots");
     }
+  };
+  const updateFiles = (e) => {
+    const files = e.target.files;
+    setImages(files);
   };
 
   return (
@@ -131,6 +143,26 @@ function HostForm() {
               name="price"
               required
             />
+            <input
+              type="number"
+              onChange={updateBeds}
+              value={beds}
+              placeholder="Beds"
+              name="beds"
+              required
+            />
+            <input
+              type="number"
+              onChange={updateBaths}
+              value={baths}
+              placeholder="Baths"
+              name="baths"
+              required
+            />
+            <label>
+              Multiple Upload
+              <input type="file" multiple onChange={updateFiles} />
+            </label>
             <button className="host-button" type="submit">
               Submit
             </button>

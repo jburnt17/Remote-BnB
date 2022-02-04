@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
+const { multipleMulterUpload, multiplePublicFileUpload } = require("../../awsS3");
 const { Spot } = require("../../db/models");
 const { restoreUser } = require("../../utils/auth");
 
@@ -7,16 +8,42 @@ router.get(
   "/",
   restoreUser,
   asyncHandler(async (req, res) => {
-    console.log('hello1212')
     res.json();
   })
 );
 
 router.post(
   "/",
+  multipleMulterUpload("images"),
   asyncHandler(async (req, res) => {
-    const spot = await Spot.create(req.body);
-    res.json(spot);
+    console.log(req.body);
+    const {
+      userId,
+      address,
+      city,
+      state,
+      country,
+      name,
+      price,
+      beds,
+      baths,
+    } = req.body;
+    const images = await multiplePublicFileUpload(req.files);
+    console.log('imageUrl ====>', images);
+    const spot = await Spot.create({
+      userId,
+      address,
+      city,
+      state,
+      country,
+      name,
+      price,
+      beds,
+      baths,
+      images
+    });
+    console.log('spot =====>', spot)
+    return res.json(spot);
   })
 );
 

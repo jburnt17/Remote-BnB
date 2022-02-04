@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const ADD_SPOT = "spot/addSpot";
 const LOAD_SPOTS = "spot/loadSpots";
-const LOAD_SPOT = "spot/loadSpot"
+const LOAD_SPOT = "spot/loadSpot";
 const REMOVE_SPOT = "spot/removeSpot";
 const UPDATE_SPOT = "spot/updateSpot";
 
@@ -19,7 +19,7 @@ export const loadSpots = (spots) => ({
 
 export const loadSpot = (spot) => ({
   type: LOAD_SPOT,
-  spot
+  spot,
 });
 
 export const removeSpot = (spot) => ({
@@ -32,13 +32,39 @@ export const updateSpot = (spot) => ({
   spot,
 });
 
-
 //thunks
 export const createSpot = (spot) => async (dispatch) => {
+  const {
+    images,
+    userId,
+    address,
+    city,
+    state,
+    country,
+    name,
+    price,
+    beds,
+    baths,
+  } = spot;
+  const formData = new FormData();
+  formData.append("userId", userId);
+  formData.append("address", address);
+  formData.append("city", city);
+  formData.append("state", state);
+  formData.append("country", country);
+  formData.append("name", name);
+  formData.append("price", price);
+  formData.append("beds", beds);
+  formData.append("baths", baths);
+  if (images && images.length !== 0) {
+    for (var i = 0; i < images.length; i++) {
+      formData.append("images", images[i]);
+    }
+  }
   const response = await csrfFetch("/api/host", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(spot),
+    headers: { "Content-Type": "multipart/form-data" },
+    body: formData,
   });
   const newSpot = await response.json();
   if (response.ok) {
@@ -59,7 +85,7 @@ export const getSpot = (spotId) => async (dispatch) => {
   const spot = await response.json();
   dispatch(loadSpot(spot));
   return spot;
-}
+};
 
 export const deleteSpot = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}`, {
@@ -89,7 +115,7 @@ const initialState = { entries: {} };
 const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_SPOT: {
-      const newState = action.spot
+      const newState = action.spot;
       return newState;
     }
     case LOAD_SPOTS: {
@@ -107,7 +133,7 @@ const spotReducer = (state = initialState, action) => {
     case ADD_SPOT: {
       return {
         ...state,
-        [action.spot.id]: action.spot
+        [action.spot.id]: action.spot,
       };
     }
     case REMOVE_SPOT: {

@@ -38,6 +38,18 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DECIMAL(6, 2),
       },
+      beds: {
+        allowNull: false,
+        type: Sequelize.DECIMAL(6, 2),
+      },
+      baths: {
+        allowNull: false,
+        type: Sequelize.DECIMAL(6, 2),
+      },
+      images: {
+        allowNull: false,
+        type: Sequelize.ARRAY(Sequelize.TEXT),
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

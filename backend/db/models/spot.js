@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
       country: DataTypes.STRING,
       name: DataTypes.STRING,
       price: DataTypes.DECIMAL,
+      beds: DataTypes.INTEGER,
+      baths: DataTypes.INTEGER,
+      images: DataTypes.ARRAY(DataTypes.STRING),
     },
     {}
   );
