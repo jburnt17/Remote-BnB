@@ -27,7 +27,7 @@ function SingleSpot() {
   const dispatch = useDispatch();
 
   const usersObj = useSelector((state) => state.users);
-  const currentUserId = useSelector((state) => state.session.user.id);
+  const currentUserId = useSelector((state) => state.session.user?.id);
   const commentsObj = useSelector((state) => state.comments);
 
   const comments = Object.values(commentsObj);

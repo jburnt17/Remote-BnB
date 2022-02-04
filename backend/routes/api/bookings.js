@@ -22,7 +22,6 @@ router.delete(
 router.post(
   "/",
   asyncHandler(async (req, res) => {
-    console.log("sdfsdfsdf");
     const booking = await Booking.create(req.body);
     res.json(booking);
   })

@@ -10,7 +10,7 @@ import SpotCard from "../SpotCard";
 import { Redirect } from "react-router";
 
 function SpotsList() {
-  const sessionUser = useSelector((state) => state.session.user);
+  const sessionUser = useSelector((state) => state.session?.user);
   const dispatch = useDispatch();
   const spotObj = useSelector((state) => ({ ...state.spotState.entries }));
   const spots = Object.values(spotObj);
@@ -18,7 +18,6 @@ function SpotsList() {
     dispatch(getSpots());
   }, [dispatch]);
 
-  if (!sessionUser) return <Redirect to="/signup" />;
   return (
     <div>
       <NavBar />

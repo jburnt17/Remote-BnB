@@ -29,7 +29,6 @@ router.post(
       baths,
     } = req.body;
     const images = await multiplePublicFileUpload(req.files);
-    console.log('imageUrl ====>', images);
     const spot = await Spot.create({
       userId,
       address,
@@ -42,7 +41,6 @@ router.post(
       baths,
       images
     });
-    console.log('spot =====>', spot)
     return res.json(spot);
   })
 );
