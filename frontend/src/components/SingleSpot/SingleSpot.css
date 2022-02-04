@@ -44,8 +44,10 @@
   object-fit: cover;
   border-radius: 0rem 1rem 0rem 0rem;
 }
-.spot-page-title {
-  margin: 1.5rem 0rem;
+.spot-page-h1 {
   font-weight: normal;
   font-size: 1.65rem;
+}
+.spot-page-title {
+  margin: 1.5rem 0rem;
 }

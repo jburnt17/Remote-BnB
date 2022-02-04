@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Spot.belongsTo(models.User, { foreignKey: "userId", onDelete: "CASCADE" });
     Spot.hasMany(models.Booking, { foreignKey: "spotId", onDelete: "CASCADE" });
+    Spot.hasMany(models.Comment, { foreignKey: "spotId", onDelete: "CASCADE" });
   };
   return Spot;
 };
