@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/jburnt17/airbnb-clone/issues"
   },
-  "homepage": "https://github.com/jburnt17/airbnb-clone#readme"
+  "homepage": "https://github.com/jburnt17/airbnb-clone#readme",
+  "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.4.0",
+    "react-calendar": "^3.6.0"
+  }
 }

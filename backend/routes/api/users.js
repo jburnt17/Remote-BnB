@@ -5,6 +5,14 @@ const { setTokenCookie, requireAuth } = require("../../utils/auth");
 const { User } = require("../../db/models");
 
 const router = express.Router();
+// Fetch all users
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const users = await User.findAll();
+    res.json(users);
+  })
+);
 
 // Sign up
 router.post(
@@ -20,5 +28,6 @@ router.post(
     });
   })
 );
+
 
 module.exports = router;

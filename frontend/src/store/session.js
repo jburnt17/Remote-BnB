@@ -18,6 +18,7 @@ const removeUser = () => {
 };
 
 //thunks
+
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
   const response = await csrfFetch("/api/session", {
@@ -34,7 +35,7 @@ export const login = (user) => async (dispatch) => {
 
 export const demoLogin = (user) => async (dispatch) => {
   const { credential, password } = user;
-  console.log(user)
+  console.log(user);
   const response = await csrfFetch("/api/session/demo", {
     method: "POST",
     body: JSON.stringify({
@@ -72,7 +73,7 @@ export const signup = (user) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   const response = await csrfFetch("/api/session", {
-    method: 'DELETE',
+    method: "DELETE",
   });
   dispatch(removeUser());
   return response;
