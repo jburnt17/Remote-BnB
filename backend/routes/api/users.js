@@ -3,6 +3,7 @@ const asyncHandler = require("express-async-handler");
 
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
 const { User } = require("../../db/models");
+const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
 
 const router = express.Router();
 // Fetch all users
@@ -17,9 +18,11 @@ router.get(
 // Sign up
 router.post(
   "/",
+  singleMulterUpload("image"),
   asyncHandler(async (req, res) => {
     const { email, password, username } = req.body;
-    const user = await User.signup({ email, username, password });
+    const image = await singlePublicFileUpload(req.file);
+    const user = await User.signup({ email, username, password, image });
 
     await setTokenCookie(res, user);
 
@@ -28,6 +31,5 @@ router.post(
     });
   })
 );
-
 
 module.exports = router;

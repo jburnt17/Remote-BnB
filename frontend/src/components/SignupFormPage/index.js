@@ -12,6 +12,7 @@ function SignupFormPage() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [image, setImage] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -21,8 +22,9 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
+      console.log("image inside handleSubmit =>", image)
       return dispatch(
-        sessionActions.signup({ email, username, password })
+        sessionActions.signup({ email, username, password, image })
       ).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -31,6 +33,11 @@ function SignupFormPage() {
     return setErrors([
       "Confirm Password field must be the same as the Password field",
     ]);
+  };
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
   };
 
   return (
@@ -45,12 +52,12 @@ function SignupFormPage() {
         <div className="signup-form-container">
           <h2 className="signup-form-title">Sign Up</h2>
           <form className="signup-form" onSubmit={handleSubmit}>
-              {errors.map((error, idx) => (
-                <div className="error-container">
-                  <ExclamationIcon className="error-x"/>
+            {errors.map((error, idx) => (
+              <div className="error-container">
+                <ExclamationIcon className="error-x" />
                 <p key={idx}>{error}</p>
-                </div>
-              ))}
+              </div>
+            ))}
             <input
               placeholder="Email"
               className="signup-email"
@@ -83,6 +90,9 @@ function SignupFormPage() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
+            <label>
+              <input type="file" onChange={updateFile} />
+            </label>
             <button className="signup-button" type="submit">
               Sign Up
             </button>

@@ -16,12 +16,21 @@ function SingleSpot() {
   const [dateState, setDateState] = useState([
     {
       startDate: new Date(),
-      endDate: null,
+      endDate: new Date(),
       key: "selection",
     },
   ]);
   const [comment, setComment] = useState("");
-  useEffect(() => console.log("start =>", dateState[0].startDate), [dateState]);
+  useEffect(
+    () =>
+      console.log(
+        "start =>",
+        dateState[0].startDate.getDate(),
+        "end =>",
+        dateState[0]?.endDate?.getDate()
+      ),
+    [dateState]
+  );
 
   const { spotId } = useParams();
   const dispatch = useDispatch();
@@ -83,15 +92,58 @@ function SingleSpot() {
         <p>
           {parseInt(beds)} bedrooms • {parseInt(baths)} baths
         </p>
-        <div>
+        <div className="booking-widget">
+
+          <div className="booking-widget-header">
+            <p className="per-night"><span className="booking-widget-price">${price} </span>/ night</p>
+            <p className="widget-header-comments">{comments.length} comments</p>
+          </div>
+
           <DateRange
             editableDateInputs={true}
             onChange={(item) => setDateState([item.selection])}
             moveRangeOnFirstSelection={false}
             ranges={dateState}
+            rangeColors={["rgb(47, 163, 115)"]}
+            className="date-picker"
           />
+          <button className="book-now-button">Book now</button>
+          <div className="pricing-container">
+            <div className="price-per-night-con pricing-child-div">
+              <p>
+                ${price} x{" "}
+                {dateState[0]?.endDate?.getDate() -
+                  dateState[0]?.startDate?.getDate()}{" "}
+                nights
+              </p>
+              <p>
+                $
+                {(dateState[0]?.endDate?.getDate() -
+                  dateState[0]?.startDate?.getDate()) *
+                  price}
+              </p>
+            </div>
+            <div className="cleaning-fee-con pricing-child-div">
+              <p>Cleaning Fee</p>
+              <p>$150</p>
+            </div>
+            <div className="service-fee-con pricing-child-div">
+              <p>Service Fee</p>
+              <p>$300</p>
+            </div>
+            <div className="booking-total-con pricing-child-div">
+              <p>Total before taxes</p>
+              <p>
+                $
+                {(dateState[0]?.endDate?.getDate() -
+                  dateState[0]?.startDate?.getDate()) *
+                  price +
+                  150 +
+                  300}
+              </p>
+            </div>
+          </div>
         </div>
-        <p>${price}</p>
         <form onSubmit={(e) => handleCommentSubmit(e, comment, spotId)}>
           <input
             placeholder="comment"
@@ -102,7 +154,10 @@ function SingleSpot() {
         {comments.map((comment) => (
           <>
             <div>
-              {users.filter((user) => +user.id === +comment.userId)[0]?.username}
+              {
+                users.filter((user) => +user.id === +comment.userId)[0]
+                  ?.username
+              }
             </div>
             <div>{comment.content}</div>
           </>

@@ -7,22 +7,28 @@ import {
   GlobeAltIcon,
   MenuIcon,
   SearchIcon,
-  UserCircleIcon,
 } from "@heroicons/react/solid";
 
 import "./navbar.css";
+import { Avatar } from "@mui/material";
+import { fetchUsers } from "../../store/users";
 
 function NavBar() {
   const [menuVis, setMenuVis] = useState(true);
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
+  const usersObj = useSelector((state) => state.users);
 
+  const users = Object.values(usersObj);
   const logout = (e) => {
     e.preventDefault();
     history.push("/login");
     dispatch(sessionActions.logout());
   };
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [])
 
   useEffect(() => {
     const menuCon = document.querySelector(".user-modal-con");
@@ -59,7 +65,8 @@ function NavBar() {
           </NavLink>
           <div onClick={() => setMenuVis(!menuVis)} className="right-menu-con">
             <MenuIcon className="icon menu-icon" />
-            <UserCircleIcon className="icon user-icon" />
+            {/* <UserCircleIcon className="icon user-icon" /> */}
+            <Avatar srcSet={users.find((user) => user?.id === sessionUser?.id)?.image} className="icon user-icon"/>
           </div>
           <div className="user-modal-con">
             <ul className="user-modal">
