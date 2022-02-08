@@ -244,15 +244,18 @@
 }
 @media (max-width: 1225px) {
   .spot-page-body {
-      display: flex;
-      flex-direction: column;
-      margin: 1rem 5rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 5rem;
   }
   .booking-widget {
     position: static;
   }
 }
 @media (max-width: 850px) {
+  .spot-page-body {
+    margin: 0.25rem 2rem;
+  }
   .spot-page-info {
     height: 125px;
   }
@@ -266,5 +269,8 @@
   }
   .booking-widget {
     margin-bottom: 1rem;
+  }
+  .map {
+    height: 300px;
   }
 }
