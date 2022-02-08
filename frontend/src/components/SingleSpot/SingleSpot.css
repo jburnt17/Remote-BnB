@@ -141,6 +141,19 @@
   flex-direction: column;
   grid-column: span 2;
   height: 700px;
+  position: relative;
+}
+.comment-form {
+  position: absolute;
+  bottom: 0;
+}
+.comment-form > input {
+  border: 1px solid rgba(212, 212, 212, 0.733);
+  border-radius: 4px;
+  height: 3rem;
+  padding-left: .5rem;
+  font-size: .95rem;
+  width: 600px;
 }
 .single-spot-city {
   text-transform: capitalize;

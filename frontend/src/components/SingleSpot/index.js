@@ -23,16 +23,6 @@ function SingleSpot() {
     },
   ]);
   const [comment, setComment] = useState("");
-  // useEffect(
-  //   () =>
-  //     console.log(
-  //       "start =>",
-  //       format(dateState[0].startDate, 'EEE MMM dd y'),
-  //       "end =>",
-  //       dateState[0]?.endDate
-  //     ),
-  //   [dateState]
-  // );
 
   const { spotId } = useParams();
   const dispatch = useDispatch();
@@ -44,8 +34,10 @@ function SingleSpot() {
 
   const comments = Object.values(commentsObj);
   const users = Object.values(usersObj);
-  const bookedDates = Object.values(bookedDatesObj).filter(booking => +booking.spotId === +spotId);
-  console.log("booked", bookedDates);
+
+  const bookedDates = Object.values(bookedDatesObj).filter(
+    (booking) => +booking.spotId === +spotId
+  );
 
   const spot = useSelector((state) => state.spotState);
   const {
@@ -64,6 +56,7 @@ function SingleSpot() {
   const handleCommentSubmit = (e, comment, spot) => {
     e.preventDefault();
     dispatch(createComment(comment, spot, currentUserId));
+    return setComment("");
   };
 
   const handleBookingSubmit = (spotId, startDate, endDate) => {
@@ -71,17 +64,17 @@ function SingleSpot() {
   };
 
   const handleDisabledDates = () => {
-    const disabledDates = []
+    const disabledDates = [];
     bookedDates.map((bookedDate) => {
       eachDayOfInterval({
         start: new Date(bookedDate.startDate),
-        end: new Date(bookedDate.endDate)
+        end: new Date(bookedDate.endDate),
       }).map((day) => {
         disabledDates.push(day);
-      })
-    })
+      });
+    });
     return disabledDates;
-  }
+  };
 
   useEffect(() => {
     dispatch(getSpot(spotId));
@@ -158,6 +151,12 @@ function SingleSpot() {
                   </div>
                 </div>
               ))}
+              <form onSubmit={(e) => handleCommentSubmit(e, comment, spotId)} className="comment-form">
+                <input
+                  placeholder="Leave a comment..."
+                  onChange={(e) => setComment(e.target.value)}
+                />
+              </form>
             </div>
           </div>
           <div className="booking-widget">
@@ -237,13 +236,6 @@ function SingleSpot() {
             ></iframe>
           </div>
         </section>
-        <form onSubmit={(e) => handleCommentSubmit(e, comment, spotId)}>
-          <input
-            placeholder="comment"
-            onChange={(e) => setComment(e.target.value)}
-          />
-          <button>Submit</button>
-        </form>
       </div>
     </>
   );
