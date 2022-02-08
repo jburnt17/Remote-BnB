@@ -17,7 +17,7 @@ module.exports = {
           beds: 3,
           baths: 4,
           images: [
-            "",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-43589015/original/8026ea93-54bb-4034-afc2-52d018145dc6.jpeg?im_w=720",
             "https://a0.muscache.com/im/pictures/miso/Hosting-43589015/original/8026ea93-54bb-4034-afc2-52d018145dc6.jpeg?im_w=720",
             "https://a0.muscache.com/im/pictures/8df626d9-d47c-4c45-8118-f515dd4d4b91.jpg?im_w=720",
             "https://a0.muscache.com/im/pictures/miso/Hosting-43589015/original/8cb74ba1-ccd1-4df2-acee-cc37b16ad280.jpeg?im_w=720",

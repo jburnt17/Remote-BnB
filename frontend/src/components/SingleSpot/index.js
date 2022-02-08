@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getSpot } from "../../store/spotReducer";
 import { add, eachDayOfInterval, format } from "date-fns";
+import { useMediaQuery } from "@mui/material";
 import { DateRange } from "react-date-range";
 import NavBar from "../NavBar";
 import "./SingleSpot.css";
@@ -13,6 +14,7 @@ import { createComment, getComments } from "../../store/comments";
 import { restoreUser } from "../../store/session";
 import { Avatar } from "@mui/material";
 import { createBooking, getBookings } from "../../store/bookingReducer";
+import { Carousel } from "react-responsive-carousel";
 
 function SingleSpot() {
   const [dateState, setDateState] = useState([
@@ -34,6 +36,7 @@ function SingleSpot() {
 
   const comments = Object.values(commentsObj);
   const users = Object.values(usersObj);
+  const matches = useMediaQuery("(max-width:1225px)");
 
   const bookedDates = Object.values(bookedDatesObj).filter(
     (booking) => +booking.spotId === +spotId
@@ -96,21 +99,37 @@ function SingleSpot() {
             {city}, {state}, {country}
           </p>
         </div>
-        <div className="single-spot-image-con">
-          {images?.map((image, i) => (
-            <img src={image} width={400} className={`spot-image-${i + 1}`} />
-          ))}
-        </div>
+        {matches ? (
+          <Carousel
+            showThumbs={false}
+            showStatus={false}
+            className="single-spot-cara"
+          >
+            {images?.map((image) => (
+              <div>
+                <img src={image} className="single-spot-cara" />
+              </div>
+            ))}
+          </Carousel>
+        ) : (
+          <div className="single-spot-image-con">
+            {images?.map((image, i) => (
+              <img src={image} width={400} className={`spot-image-${i + 1}`} />
+            ))}
+          </div>
+        )}
         <section className="spot-page-bottom">
           <div className="spot-page-info">
             <header className="host-info">
-              <p className="spot-page-hosted">
-                <span className="single-spot-city">{city}</span> home hosted by{" "}
-                {users.filter((user) => +user.id === +userId)[0]?.username}
-              </p>
-              <p className="spot-page-bed-bath">
-                {parseInt(beds)} bedrooms • {parseInt(baths)} baths
-              </p>
+              <div className="spot-header-info">
+                <p className="spot-page-hosted">
+                  <span className="single-spot-city">{city}</span> home hosted
+                  by {users.filter((user) => +user.id === +userId)[0]?.username}
+                </p>
+                <p className="spot-page-bed-bath">
+                  {parseInt(beds)} bedrooms • {parseInt(baths)} baths
+                </p>
+              </div>
               <div className="spot-host-ava">
                 <Avatar
                   srcSet={users.find((user) => user.id === userId)?.image}
@@ -151,7 +170,10 @@ function SingleSpot() {
                   </div>
                 </div>
               ))}
-              <form onSubmit={(e) => handleCommentSubmit(e, comment, spotId)} className="comment-form">
+              <form
+                onSubmit={(e) => handleCommentSubmit(e, comment, spotId)}
+                className="comment-form"
+              >
                 <input
                   placeholder="Leave a comment..."
                   onChange={(e) => setComment(e.target.value)}
