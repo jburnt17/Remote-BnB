@@ -6,8 +6,8 @@ import "./BookingCard.css";
 
 function BookingCard({ bookingId, spotId, userId, startDate, endDate }) {
   const sessionUser = useSelector((state) => state.session.user);
-  const dispatch = useDispatch();
   const spotObj = useSelector((state) => ({ ...state.spotState.entries }));
+  const dispatch = useDispatch();
   const spots = Object.values(spotObj);
 
   let start = new Date(startDate).toUTCString();
@@ -17,17 +17,17 @@ function BookingCard({ bookingId, spotId, userId, startDate, endDate }) {
 
   useEffect(() => {
     dispatch(getSpots());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const cardCon = document.querySelector(".booking-card-con");
-    if (+userId !== +sessionUser.id) {
+    if (+userId !== +sessionUser?.id) {
       return (cardCon.style.display = "none");
     }
   }, [dispatch]);
 
   const userMatch = () => {
-    if (+userId === +sessionUser.id) {
+    if (+userId === +sessionUser?.id) {
       return true;
     }
   };
@@ -53,7 +53,7 @@ function BookingCard({ bookingId, spotId, userId, startDate, endDate }) {
         <div>
           <img
             className="booking-image"
-            src="https://a0.muscache.com/im/pictures/6d0d3c2b-8515-40fd-9039-c36ea1c067db.jpg?im_w=720"
+            src={spots.find((spot) => spot.id === spotId)?.images[0]}
           />
         </div>
       )}

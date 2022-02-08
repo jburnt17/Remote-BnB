@@ -7,15 +7,12 @@ import { getBookings } from "../../store/bookingReducer";
 import BookingCard from "../BookingCard";
 
 function UserBookings() {
-  const sessionUser = useSelector((state) => state.session.user);
-  const bookingObj = useSelector((state) => ({
-    ...state.bookingState.entries,
-  }));
-  const bookings = Object.values(bookingObj);
+  const sessionUser = useSelector((state) => state?.session.user);
+  const bookings = Object.values(useSelector((state) => state?.bookingState));
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getBookings(bookings));
+    dispatch(getBookings());
   }, [dispatch]);
 
   return (
