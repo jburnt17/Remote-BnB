@@ -107,7 +107,7 @@ function SingleSpot() {
           >
             {images?.map((image) => (
               <div>
-                <img src={image} className="single-spot-cara" />
+                <img src={image} className="single-spot-cara cara-image" />
               </div>
             ))}
           </Carousel>

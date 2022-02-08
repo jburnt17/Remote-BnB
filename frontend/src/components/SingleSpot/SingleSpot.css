@@ -12,6 +12,12 @@
 .single-spot-cara {
   border-radius: 1rem;
 }
+.cara-image {
+  height: 500px;
+  display: flex;
+  flex: 1 auto;
+  object-fit: cover;
+}
 .single-spot-image-con > img {
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
   filter: brightness(0.9);
@@ -271,6 +277,11 @@
     margin-bottom: 1rem;
   }
   .map {
+    height: 300px;
+  }
+}
+@media (max-width: 600px) {
+  .cara-image {
     height: 300px;
   }
 }
