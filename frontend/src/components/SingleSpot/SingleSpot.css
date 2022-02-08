@@ -7,6 +7,7 @@
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 8px;
+  max-height: 450px;
 }
 .single-spot-image-con > img {
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
@@ -14,34 +15,48 @@
 }
 .spot-image-1 {
   grid-area: 1 / 1 / 3 / 4;
-  height: 458px;
+  display: flex;
+  flex: auto;
   width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 1rem 0rem 0rem 1rem;
 }
 .spot-image-2 {
   grid-area: 1 / 4 / 2 / 5;
-  height: 225px;
-  width: 225px;
+  height: 100%;
+  max-height: 225px;
+  width: 100%;
+  display: flex;
+  flex: auto;
   object-fit: cover;
 }
 .spot-image-3 {
   grid-area: 2 / 4 / 3 / 5;
-  height: 225px;
-  width: 225px;
+  height: 100%;
+  max-height: 225px;
+  width: 100%;
+  display: flex;
+  flex: auto;
   object-fit: cover;
 }
 .spot-image-4 {
   grid-area: 2 / 5 / 3 / 6;
-  height: 225px;
-  width: 225px;
+  height: 100%;
+  max-height: 225px;
+  width: 100%;
+  display: flex;
+  flex: auto;
   object-fit: cover;
   border-radius: 0rem 0rem 1rem 0rem;
 }
 .spot-image-5 {
   grid-area: 1 / 5 / 2 / 6;
-  height: 225px;
-  width: 225px;
+  height: 100%;
+  max-height: 225px;
+  width: 100%;
+  display: flex;
+  flex: auto;
   object-fit: cover;
   border-radius: 0rem 1rem 0rem 0rem;
 }
@@ -52,7 +67,13 @@
 .spot-page-title {
   margin: 1.5rem 0rem;
 }
+.spot-page-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 3rem;
+}
 .booking-widget {
+  grid-column: span 1;
   display: flex;
   flex-direction: column;
   flex: 1 auto;
@@ -114,4 +135,82 @@
   border-top: 1px solid rgba(212, 212, 212, 0.733);
   padding-top: 1rem;
   font-weight: normal;
+}
+.spot-page-info {
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+}
+.single-spot-city {
+  text-transform: capitalize;
+}
+.spot-page-hosted {
+  font-size: 1.2rem;
+  margin-bottom: .1rem;
+}
+.spot-page-bed-bath {
+  color: rgba(0, 0, 0, 0.725);
+  font-weight: 100;
+  margin-top: .25rem;
+}
+.host-info {
+  border-bottom: 1px solid rgba(212, 212, 212, 0.733);
+  padding-bottom: 1rem;
+  width: 90%;
+  position: relative;
+}
+.spot-host-ava {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-bottom: 1rem;
+}
+.spot-page-comment-con > h3{
+  font-weight: normal;
+  font-size: 1.25rem;
+  padding: .8rem 0rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(212, 212, 212, 0.733);
+  width: fit-content;
+  grid-column: span 2;
+}
+.spot-page-comment-con {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.spot-page-ind-comment > div > div {
+  display: flex;
+}
+.date-posted {
+  font-size: .9rem;
+  color: rgba(20, 20, 20, 0.8);
+}
+.comment-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: .5rem;
+}
+.comment {
+  margin: 1rem 0rem;
+  margin-bottom: 3rem;
+  margin-right: 2rem;
+}
+.map-section {
+  display: flex;
+  flex-direction: column;
+  grid-column: span 3;
+  width: 100%;
+  flex: 1 auto;
+  margin: 4rem 0;
+  border-top: 1px solid rgba(212, 212, 212, 0.733);
+}
+.map-section > h1 {
+  padding: 2.5rem 0;
+}
+.map {
+  height: 500px;
+  width: 100%;
+  border-radius: 2px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
 }

@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { csrfFetch } from "./csrf";
 
 const ADD_BOOKING = "/booking/addBooking";
@@ -21,19 +22,19 @@ export const removeBooking = (booking) => ({
 });
 
 //thunks
-export const createBooking = (booking) => async (dispatch) => {
-  const response = await csrfFetch("/api/bookings", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(booking),
-  });
-  console.log("in thunk");
-  const newBooking = await response.json();
-  if (response.ok) {
-    dispatch(addBooking(newBooking));
-    return newBooking;
-  }
-};
+export const createBooking =
+  (startDate, endDate, spotId, userId) => async (dispatch) => {
+    const response = await csrfFetch("/api/bookings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ startDate, endDate, spotId, userId }),
+    });
+    const newBooking = await response.json();
+    if (response.ok) {
+      dispatch(addBooking(newBooking));
+      return newBooking;
+    }
+  };
 
 export const getBookings = () => async (dispatch) => {
   const response = await csrfFetch("/api/bookings");
@@ -53,27 +54,29 @@ export const deleteBooking = (bookingId) => async (dispatch) => {
 };
 
 //initial state && reducer
-const initialState = { entries: {} };
+const initialState = {};
 
 const bookingReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_BOOKING: {
       const newState = {
         ...state,
-        entries: { [action.booking.id]: action.booking },
+        [action.booking.id]: action.booking,
       };
       return newState;
     }
     case LOAD_BOOKINGS: {
-      const newState = { ...state, entries: {} };
+      const newState = { ...state };
       action.bookings.forEach((booking) => {
-        newState.entries[booking.id] = booking;
+        newState[booking.id] = booking;
+        newState[booking.id].startDate = format(new Date(newState[booking.id]?.startDate), 'EEE MMM dd y')
+        newState[booking.id].endDate = format(new Date(newState[booking.id]?.endDate), 'EEE MMM dd y')
       });
       return newState;
     }
     case REMOVE_BOOKING: {
       const newState = { ...state };
-      delete newState.entries[action.booking.id];
+      delete newState[action.booking.id];
       return newState;
     }
     default: {

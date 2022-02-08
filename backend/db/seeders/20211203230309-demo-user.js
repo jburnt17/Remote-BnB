@@ -1,5 +1,5 @@
 "use strict";
-const faker = require("faker");
+const { faker } = require('@faker-js/faker');
 const bcrypt = require("bcryptjs");
 
 module.exports = {
@@ -11,16 +11,61 @@ module.exports = {
           email: "demo@user.io",
           username: "Demo-lition",
           hashedPassword: bcrypt.hashSync("password"),
+          image: faker.image.avatar()
         },
         {
           email: faker.internet.email(),
-          username: "FakeUser1",
+          username: faker.name.firstName(),
           hashedPassword: bcrypt.hashSync(faker.internet.password()),
+          image: faker.image.avatar()
         },
         {
           email: faker.internet.email(),
-          username: "FakeUser2",
+          username: faker.name.firstName(),
           hashedPassword: bcrypt.hashSync(faker.internet.password()),
+          image: faker.image.avatar()
+        },
+        {
+          email: faker.internet.email(),
+          username: faker.name.firstName(),
+          hashedPassword: bcrypt.hashSync(faker.internet.password()),
+          image: faker.image.avatar()
+        },
+        {
+          email: faker.internet.email(),
+          username: faker.name.firstName(),
+          hashedPassword: bcrypt.hashSync(faker.internet.password()),
+          image: faker.image.avatar()
+        },
+        {
+          email: faker.internet.email(),
+          username: faker.name.firstName(),
+          hashedPassword: bcrypt.hashSync(faker.internet.password()),
+          image: faker.image.avatar()
+        },
+        {
+          email: faker.internet.email(),
+          username: faker.name.firstName(),
+          hashedPassword: bcrypt.hashSync(faker.internet.password()),
+          image: faker.image.avatar()
+        },
+        {
+          email: faker.internet.email(),
+          username: faker.name.firstName(),
+          hashedPassword: bcrypt.hashSync(faker.internet.password()),
+          image: faker.image.avatar()
+        },
+        {
+          email: faker.internet.email(),
+          username: faker.name.firstName(),
+          hashedPassword: bcrypt.hashSync(faker.internet.password()),
+          image: faker.image.avatar()
+        },
+        {
+          email: faker.internet.email(),
+          username: faker.name.firstName(),
+          hashedPassword: bcrypt.hashSync(faker.internet.password()),
+          image: faker.image.avatar()
         },
       ],
       {}
@@ -32,7 +77,7 @@ module.exports = {
     return queryInterface.bulkDelete(
       "Users",
       {
-        username: { [Op.in]: ["Demo-lition", "FakeUser1", "FakeUser2"] },
+        username: { [Op.in]: ["Demo-lition"] },
       },
       {}
     );

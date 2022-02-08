@@ -27,6 +27,7 @@
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.4.0",
-    "react-calendar": "^3.6.0"
+    "react-calendar": "^3.6.0",
+    "react-responsive-carousel": "^3.2.22"
   }
 }

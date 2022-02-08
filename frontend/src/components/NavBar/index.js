@@ -66,7 +66,7 @@ function NavBar() {
           <div onClick={() => setMenuVis(!menuVis)} className="right-menu-con">
             <MenuIcon className="icon menu-icon" />
             {/* <UserCircleIcon className="icon user-icon" /> */}
-            <Avatar srcSet={users.find((user) => user?.id === sessionUser?.id)?.image} className="icon user-icon"/>
+            <Avatar srcSet={users.find((user) => user?.id === sessionUser?.id)?.image} className="icon user-icon" sx={{ width: 32, height: 32 }}/>
           </div>
           <div className="user-modal-con">
             <ul className="user-modal">
