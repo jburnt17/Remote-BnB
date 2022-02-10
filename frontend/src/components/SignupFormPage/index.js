@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink } from "react-router-dom";
 import { XIcon, ExclamationIcon } from "@heroicons/react/solid";
-import NavBar from "../NavBar";
+import { UploadIcon } from "@heroicons/react/outline";
 import * as sessionActions from "../../store/session";
 import "./signup.css";
+import { Avatar } from "@mui/material";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      console.log("image inside handleSubmit =>", image)
+      console.log("image inside handleSubmit =>", image);
       return dispatch(
         sessionActions.signup({ email, username, password, image })
       ).catch(async (res) => {
@@ -38,6 +39,7 @@ function SignupFormPage() {
   const updateFile = (e) => {
     const file = e.target.files[0];
     if (file) setImage(file);
+    console.log(file)
   };
 
   return (
@@ -90,9 +92,22 @@ function SignupFormPage() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            <label>
-              <input type="file" onChange={updateFile} />
+            <label for="file-upload">
+              <div className="avatar-upload-con">
+                <div className="file-button-con">
+                  <UploadIcon width={16} />
+                  <p>Upload File...</p>
+                </div>
+                <Avatar src={image && URL.createObjectURL(image)}/>
+              </div>
             </label>
+            <input
+              type="file"
+              onChange={updateFile}
+              id="file-upload"
+              className="hide-upload-button"
+            />
+
             <button className="signup-button" type="submit">
               Sign Up
             </button>
