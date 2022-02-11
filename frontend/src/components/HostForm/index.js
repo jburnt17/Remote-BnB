@@ -19,9 +19,9 @@ function HostForm() {
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [beds, setBeds] = useState(0);
-  const [baths, setBaths] = useState(0);
+  const [price, setPrice] = useState();
+  const [beds, setBeds] = useState();
+  const [baths, setBaths] = useState();
   const [images, setImages] = useState([]);
 
   const [errors, setErrors] = useState([]);
@@ -104,12 +104,13 @@ function HostForm() {
           )}
           {step === 2 && <h2 className="host-form-title">Add Photos</h2>}
           <form className="host-form" onSubmit={handleSubmit}>
-            {errors.map((error, i) => (
+            {/* {errors.map((error, i) => (
               <div className="error-container" key={i}>
                 <ExclamationIcon className="error-x" />
                 <p>{error}</p>
               </div>
-            ))}
+            ))} */}
+            {/* TODO ADD BETTER ERROR HANDLING1!@@!@!@!@!@!!@! */}
             {step === 0 && (
               <div className="step-container">
                 <input
