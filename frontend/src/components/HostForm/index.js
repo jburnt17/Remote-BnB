@@ -3,12 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, NavLink, useHistory } from "react-router-dom";
 import { createSpot } from "../../store/spotReducer";
 import { XIcon, ExclamationIcon } from "@heroicons/react/solid";
+import { CameraIcon } from "@heroicons/react/outline";
 import "./HostForm.css";
+import { useMediaQuery } from "@mui/material";
+import { Carousel } from "react-responsive-carousel";
 
 function HostForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
+  const matches = useMediaQuery("(max-width:1225px)");
 
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -21,6 +25,7 @@ function HostForm() {
   const [images, setImages] = useState([]);
 
   const [errors, setErrors] = useState([]);
+  const [step, setStep] = useState(0);
 
   const updateAddress = (e) => setAddress(e.target.value);
   const updateCity = (e) => setCity(e.target.value);
@@ -49,7 +54,6 @@ function HostForm() {
     }
   }, [price]);
 
-  if (!sessionUser) return <Redirect to="/signup" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -74,7 +78,11 @@ function HostForm() {
     const files = e.target.files;
     setImages(files);
   };
+  useEffect(() => {
+    console.log(images);
+  }, [images]);
 
+  if (!sessionUser) return <Redirect to="/signup" />;
   return (
     <>
       <NavLink to="/">
@@ -87,7 +95,14 @@ function HostForm() {
           )}
         </div>
         <div className="host-form-container">
-          <h2 className="host-form-title">Finish your listing.</h2>
+          <p className="step-of-count">STEP: {step + 1} OF 3</p>
+          {step === 0 && (
+            <h2 className="host-form-title">Address Information</h2>
+          )}
+          {step === 1 && (
+            <h2 className="host-form-title">Listing Information</h2>
+          )}
+          {step === 2 && <h2 className="host-form-title">Add Photos</h2>}
           <form className="host-form" onSubmit={handleSubmit}>
             {errors.map((error, i) => (
               <div className="error-container" key={i}>
@@ -95,77 +110,130 @@ function HostForm() {
                 <p>{error}</p>
               </div>
             ))}
-            <input
-              type="text"
-              onChange={updateAddress}
-              value={address}
-              placeholder="Address"
-              name="address"
-              required
-            />
-            <input
-              type="text"
-              onChange={updateCity}
-              value={city}
-              placeholder="City"
-              name="city"
-              required
-            />
-            <input
-              type="text"
-              onChange={updateState}
-              value={state}
-              placeholder="State"
-              name="state"
-              required
-            />
-            <input
-              type="text"
-              onChange={updateCountry}
-              value={country}
-              placeholder="Country"
-              name="country"
-              required
-            />
-            <input
-              type="text"
-              onChange={updateName}
-              value={name}
-              placeholder="Title"
-              name="title"
-              required
-            />
-            <input
-              type="number"
-              onChange={updatePrice}
-              value={price}
-              placeholder="Price"
-              name="price"
-              required
-            />
-            <input
-              type="number"
-              onChange={updateBeds}
-              value={beds}
-              placeholder="Beds"
-              name="beds"
-              required
-            />
-            <input
-              type="number"
-              onChange={updateBaths}
-              value={baths}
-              placeholder="Baths"
-              name="baths"
-              required
-            />
-            <label>
-              Multiple Upload
-              <input type="file" multiple onChange={updateFiles} />
-            </label>
-            <button className="host-button" type="submit">
-              Submit
-            </button>
+            {step === 0 && (
+              <div className="step-container">
+                <input
+                  type="text"
+                  onChange={updateAddress}
+                  value={address}
+                  placeholder="Address"
+                  name="address"
+                  required
+                />
+                <input
+                  type="text"
+                  onChange={updateCity}
+                  value={city}
+                  placeholder="City"
+                  name="city"
+                  required
+                />
+                <input
+                  type="text"
+                  onChange={updateState}
+                  value={state}
+                  placeholder="State"
+                  name="state"
+                  required
+                />
+                <input
+                  type="text"
+                  onChange={updateCountry}
+                  value={country}
+                  placeholder="Country"
+                  name="country"
+                  required
+                />
+                <button className="host-button" onClick={() => setStep(1)}>
+                  Next
+                </button>
+              </div>
+            )}
+            {step === 1 && (
+              <div className="step-container">
+                <input
+                  type="text"
+                  onChange={updateName}
+                  value={name}
+                  placeholder="Title"
+                  name="title"
+                  required
+                />
+                <input
+                  type="number"
+                  onChange={updatePrice}
+                  value={price}
+                  placeholder="Price"
+                  name="price"
+                  required
+                />
+                <input
+                  type="number"
+                  onChange={updateBeds}
+                  value={beds}
+                  placeholder="Beds"
+                  name="beds"
+                  required
+                />
+                <input
+                  type="number"
+                  onChange={updateBaths}
+                  value={baths}
+                  placeholder="Baths"
+                  name="baths"
+                  required
+                />
+                <div>
+                  <button className="prev-button" onClick={() => setStep(0)}>
+                    Previous
+                  </button>
+                  <button className="host-button" onClick={() => setStep(2)}>
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+            {step === 2 && (
+              <div className="step-container">
+                <div className="host-image-container">
+                  <Carousel
+                    className="single-spot-cara"
+                    showThumbs={false}
+                    showStatus={false}
+                  >
+                    {images.length > 0 ? (
+                      Object.values(images).map((image, i) => (
+                        <img
+                          src={image && URL.createObjectURL(image)}
+                          height={150}
+                          width={150}
+                          className="cara-host-image"
+                        />
+                      ))
+                    ) : (
+                      <img className="cara-host-image" src="https://jmb-s3-bucket.s3.amazonaws.com/no-image.png"/>
+                    )}
+                  </Carousel>
+                </div>
+                <label>
+                  <input type="file" multiple onChange={updateFiles} className="hide-file-input-host" id="file-upload"/>
+                </label>
+                <label for="file-upload" className="file-upload-label">
+                    <div className="host-file-button-con">
+                      <CameraIcon width={24} />
+                      <p>Browse Photos...</p>
+                  </div>
+                </label>
+                <div>
+                  <button className="prev-button" onClick={() => setStep(1)}>
+                    Previous
+                  </button>
+                  <button className="host-button" type="submit">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            )}
           </form>
         </div>
       </div>
