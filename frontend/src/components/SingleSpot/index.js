@@ -84,6 +84,9 @@ function SingleSpot() {
   }, [dispatch]);
 
   useEffect(() => {
+    (function () {
+      document.documentElement.scrollTop = 0;
+    })();
     dispatch(restoreUser());
     dispatch(fetchUsers());
     dispatch(getBookings());

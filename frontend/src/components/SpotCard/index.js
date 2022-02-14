@@ -2,31 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { deleteSpot } from "../../store/spotReducer";
-import { DotsCircleHorizontalIcon } from "@heroicons/react/solid";
+import { DotsHorizontalIcon } from "@heroicons/react/solid";
 import { Carousel } from "react-responsive-carousel";
 import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
-
 import "./styles.css";
+import { useTransition, animated } from "react-spring";
 
 function SpotCard({ ind, spotId, city, state, price, spotObj, images }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [optionsShow, setOptionsShow] = useState(true);
+  const [optionsShow, setOptionsShow] = useState(null);
   const sessionUser = useSelector((state) => state.session.user);
-
-  useEffect(() => {
-    const option = document.querySelector(`#option-${spotId}`);
-    return (option.style.zIndex = "99");
-  }, []);
-  useEffect(() => {
-    const option = document.querySelector(`#option-${spotId}`);
-    if (!optionsShow) {
-      option.style.zIndex = "99";
-      option.style.display = "flex";
-    } else {
-      option.style.display = "none";
-    }
-  }, [optionsShow]);
 
   const upper = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -35,6 +21,17 @@ function SpotCard({ ind, spotId, city, state, price, spotObj, images }) {
   const optionCheck = () => {
     return +sessionUser.id === +spotObj[spotId].userId;
   };
+
+  const transitions = useTransition(null, {
+    from: {
+      opacity: 0,
+      y: -500,
+    },
+    enter: {
+      opacity: 1,
+      y: 0,
+    },
+  });
 
   return (
     <>
@@ -45,7 +42,6 @@ function SpotCard({ ind, spotId, city, state, price, spotObj, images }) {
             {images.map((image) => (
               <div
                 onClick={() => {
-                  console.log("hello");
                   history.push(`/spots/${spotId}`);
                 }}
               >
@@ -54,25 +50,36 @@ function SpotCard({ ind, spotId, city, state, price, spotObj, images }) {
             ))}
           </Carousel>
           {sessionUser && optionCheck() && (
-            <DotsCircleHorizontalIcon
+            <DotsHorizontalIcon
               onClick={() => setOptionsShow(!optionsShow)}
               className="spot-dots"
             />
           )}
-          <ol id={`option-${spotId}`} className="spot-options">
-            <button
-              className="options-link delete-button"
-              onClick={() => {
-                setOptionsShow(!optionsShow);
-                dispatch(deleteSpot(spotId));
-              }}
-            >
-              Delete
-            </button>
-            <NavLink to={`/spots/${spotId}/edit`} className="options-link">
-              Edit
-            </NavLink>
-          </ol>
+          {optionsShow && (
+            <div className="spot-options-con">
+              <ol id={`option-${spotId}`} className="spot-options">
+                <button
+                  style={{ color: "red" }}
+                  className="options-link"
+                  onClick={() => {
+                    setOptionsShow(!optionsShow);
+                    dispatch(deleteSpot(spotId));
+                  }}
+                >
+                  Delete
+                </button>
+                <NavLink to={`/spots/${spotId}/edit`} className="options-link">
+                  Edit
+                </NavLink>
+                <button
+                  className="options-link"
+                  onClick={() => setOptionsShow(!optionsShow)}
+                >
+                  Close
+                </button>
+              </ol>
+            </div>
+          )}
         </div>
         <div className="spot-desc">
           {upper(city)}, {upper(state)}

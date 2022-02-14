@@ -177,9 +177,7 @@
   height: 3rem;
   padding-left: 0.5rem;
   font-size: 0.95rem;
-  width: 100%;
-  display: flex;
-  flex: 1 auto;
+  width: 300px;
 }
 .single-spot-city {
   text-transform: capitalize;

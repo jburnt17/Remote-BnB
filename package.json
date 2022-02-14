@@ -29,6 +29,8 @@
     "@faker-js/faker": "^6.0.0-alpha.5",
     "@mui/material": "^5.4.0",
     "react-calendar": "^3.6.0",
-    "react-responsive-carousel": "^3.2.22"
+    "react-motion": "^0.5.2",
+    "react-responsive-carousel": "^3.2.22",
+    "react-spring": "^9.4.3"
   }
 }
