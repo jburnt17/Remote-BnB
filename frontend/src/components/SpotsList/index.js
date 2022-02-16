@@ -7,14 +7,18 @@ import "./styles.css";
 
 import { getSpots } from "../../store/spotReducer";
 import SpotCard from "../SpotCard";
-import { Redirect } from "react-router";
-import { useTransition, animated, config } from "react-spring";
+import { useTransition, animated } from "react-spring";
 
 function SpotsList() {
-  const sessionUser = useSelector((state) => state.session?.user);
   const dispatch = useDispatch();
   const spotObj = useSelector((state) => ({ ...state.spotState.entries }));
-  const spots = Object.values(spotObj);
+  let spots = Object.values(spotObj);
+
+  if (window.location.href.split('?')[1]) {
+    const loc = window.location.href.split('?')[1].split('=')[1];
+    spots = spots.filter((spot) => spot.state === loc)
+  }
+  
   const transitions = useTransition(null, {
     from: {
       opacity: 0,
@@ -29,6 +33,7 @@ function SpotsList() {
   useEffect(() => {
     dispatch(getSpots());
   }, [dispatch]);
+
 
   useEffect(() => {
     (function () {

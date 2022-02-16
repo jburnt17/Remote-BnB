@@ -4,8 +4,10 @@ import NavBar from "../NavBar";
 import SmallCard from "../SmallCard";
 import areas from "../../data/areas";
 import "./Home.css";
+import { useHistory } from "react-router-dom";
 
 function Home() {
+  const history = useHistory();
   return (
     <div>
       <NavBar />

@@ -15,12 +15,18 @@ import { fetchUsers } from "../../store/users";
 
 function NavBar() {
   const [menuVis, setMenuVis] = useState(true);
+  const [search, setSearch] = useState();
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const usersObj = useSelector((state) => state.users);
 
   const users = Object.values(usersObj);
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  }
+
   const logout = (e) => {
     e.preventDefault();
     history.push("/login");
@@ -53,10 +59,10 @@ function NavBar() {
           <img className="logo" src={logo} alt="logo" />
         </NavLink>
         {/* middle */}
-        <div className="search-con">
-          <input className="input" placeholder="Start your search" />
+        <form className="search-con" onSubmit={() => history.push(`/spots?location=${search}`)}>
+          <input className="input" placeholder="Start your search" onChange={(e) => handleChange(e)}/>
           <SearchIcon className="icon search-icon" />
-        </div>
+        </form>
         {/* right */}
         <div className="right-con">
           <NavLink className="right-con" to="/host">
