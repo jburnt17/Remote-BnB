@@ -16,9 +16,9 @@ function SpotsList() {
 
   if (window.location.href.split('?')[1]) {
     const loc = window.location.href.split('?')[1].split('=')[1];
-    spots = spots.filter((spot) => spot.state === loc)
+    spots = spots.filter((spot) => spot.state.toLowerCase() === loc.toLowerCase())
   }
-  
+
   const transitions = useTransition(null, {
     from: {
       opacity: 0,
