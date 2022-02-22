@@ -1,8 +1,8 @@
 <div align="center">
-<img src="https://img.shields.io/github/commit-activity/y/jburnt17/Remote-BnB" />
-<img src="https://img.shields.io/github/last-commit/jburnt17/Remote-BnB/main" />
-<img src="https://img.shields.io/github/languages/count/jburnt17/Remote-BnB" />
-<img src="https://img.shields.io/github/languages/code-size/jburnt17/Remote-BnB" />
+<img src="https://img.shields.io/github/commit-activity/y/jburnt17/Remote-BnB?style=for-the-badge" />
+<img src="https://img.shields.io/github/last-commit/jburnt17/Remote-BnB/main?style=for-the-badge" />
+<img src="https://img.shields.io/github/languages/count/jburnt17/Remote-BnB?style=for-the-badge" />
+<img src="https://img.shields.io/github/languages/code-size/jburnt17/Remote-BnB?style=for-the-badge" />
 </div>
 
 <br />
