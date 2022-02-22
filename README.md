@@ -28,7 +28,7 @@
 
 <br />
 <div align="center">
-   <img src="https://jmb-s3-bucket.s3.amazonaws.com/remote-bnb.gif" />
+   <img src="https://jmb-s3-bucket.s3.amazonaws.com/remote_bnb2.gif" />
 </div>
 <br />
 
